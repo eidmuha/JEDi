@@ -1,7 +1,8 @@
 // Declare Global Variables here
-
+// The veriable that holds the coordinates
+var coord = []
 // Function List
-// 
+/
 // Uses Zomato API to find surrounding restaurants using coordinates (lat, long)
 function findRestaurantsAt(latitude, longitude) {
     // Declare API key variable
@@ -18,9 +19,21 @@ function findRestaurantsAt(latitude, longitude) {
         }
 
     }).then(function (response) {
-        console.log(response);
+        // console.log(response);
+        initMap()
     })
 }
+
+// Initialize and add the map
+function initMap() {
+    // get my location coordinates
+    var myLocation = {lat: coord[0].lat, lng: coord[0].lng};
+    // The map, centered at the given location
+    var map = new google.maps.Map(
+        document.getElementById('map'), {zoom: 20, center: myLocation});
+    // The marker, positioned at the given location
+    var marker = new google.maps.Marker({position: myLocation, map: map});
+  }
 
 // Use IP-API to find user coordinates and use to find surrounding restaurants
 function findRestaurantsAroundMe() {
@@ -40,8 +53,12 @@ function findRestaurantsAroundMe() {
         var latitude = response.lat;
         var longitude = response.lon;
 
+        // push the location in an array, for later use
+        coord.push({lat:latitude, lng: longitude})
+        
         // Use coordinates to find nearby restaurants
         findRestaurantsAt(latitude, longitude);
+
     })
 }
 
