@@ -39,3 +39,10 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 * ...
 * ...
 * etc
+
+## Audience
+
+University students are adventurous when it comes to food. Because they have a budget, they are more likely to look into reviews before they spend. 
+Adds a whole new atmosphere to going to a restaurant. Adds a whole new dynamic to the whole restaurant eating experience. It solves eating alone as a problem. 
+As a university student, I want to know how to get the best value for my limited lunch and dinner allowance and whether the chef is in a good mood today so that I don't end up regretting my spend. 
+As a user, I want to stay socially active while I eat my meal so it's not awkward to eat alone.
