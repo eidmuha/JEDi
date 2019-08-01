@@ -1,7 +1,7 @@
 # Feed Better!
 
 This web application (called) displays the predefined resturants on a map arround a user. The user clicks on on of the locatoin and then can communicate with those people who are willing to give feedback on the specific resturant. Something like:
-![Initial Mockup](https://github.com/eidmuha/JEDi/tree/master/assets/images/JEDi.png)
+![Initial Mockup](https://github.com/eidmuha/JEDi/blob/master/assets/images/JEDi.png)
 
 ## Getting Started
 
