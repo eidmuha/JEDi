@@ -1,8 +1,8 @@
 // Declare Global Variables here
 // The veriable that holds the coordinates
-var coord = []
+var coord = [];
 // Function List
-/
+
 // Uses Zomato API to find surrounding restaurants using coordinates (lat, long)
 function findRestaurantsAt(latitude, longitude) {
     // Declare API key variable
@@ -38,20 +38,21 @@ function initMap() {
 // Use IP-API to find user coordinates and use to find surrounding restaurants
 function findRestaurantsAroundMe() {
     // String of concatenated fields to return from API call
-    var fields = 'status,message,country,countryCode,region,regionName,city,district,zip,lat,lon,timezone,isp,org,as,mobile,query';
+    // var fields = 'status,message,country,countryCode,region,regionName,city,district,zip,lat,lon,timezone,isp,org,as,mobile,query';
+    var api_key = '4dc35c50ed1644efa6d3364edcfb582c';
 
     // AJAX API Call
     $.ajax({
         // Query & Parameters
-        url: 'http://ip-api.com/json/?fields=' + fields,
+        url: 'https://api.ipgeolocation.io/ipgeo?apiKey=' + api_key,
         method: 'GET'
 
     }).then(function (response) {
         console.log(response);
 
         // Assign geolocation values from response to variables
-        var latitude = response.lat;
-        var longitude = response.lon;
+        var latitude = parseInt(response.latitude);
+        var longitude = parseInt(response.longitude);
 
         // push the location in an array, for later use
         coord.push({lat:latitude, lng: longitude})
