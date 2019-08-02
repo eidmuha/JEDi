@@ -24,7 +24,7 @@ The files and resources of this project is uploaded on github publically and the
 
 * [Google Map API](https://developers.google.com/maps/documentation/javascript/tutorial/) - Provides MAP and the markers on the places
 * [Zomato](https://developers.zomato.com/) - Zomato API to find surrounding restaurants using coordinates (lat, long)
-* [IP-API](http://ip-api.com//) - ...
+* [IP Geolocation](https://ipgeolocation.io/) - ...
 
 ## Authors
 
