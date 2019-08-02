@@ -9,13 +9,15 @@ var messageButton = $('#sendMessage');
 // Function List
 // 
 // Renders CHat
-function RenderChat(snap) {
-    console.log('key' + snap.ref.key)
+function RenderMessage(snap) {
+
+    console.log('Rendering Msg');
+    console.log(snap);
+
     var newMessage = $('<p>');
-    newMessage.text(snap.val().message);
 
+    newMessage.text(snap.message);
     chatBoard.append(newMessage);
-
 }
 
 
@@ -27,16 +29,19 @@ $(document).ready(function () {
     var ref = database.ref('/' + restaurantName).orderByChild('dateAdded');
 
     ref.once('value', function (snap) {
-        console.log(snap.val());
-        RenderChat(snap);
+        console.log('Once function');
+
+        // With returned snapshot, iterate through
+        for (key in snap.val()) {
+            console.log(snap.val()[key]);
+            RenderMessage(snap.val()[key]);
+        }
     });
 
     // Event listener
     messageButton.on('click', function (event) {
         // Prevent default form submission behavior
         event.preventDefault();
-
-
 
         database.ref('/' + restaurantName).push({
             // Push the message
@@ -56,14 +61,13 @@ $(document).ready(function () {
 
 
         //   Database listeners
+        // 
+        // When a child is added within the restaurant database reference
         database.ref('/' + restaurantName).on('child_added', function (snap) {
             console.log(snap.val());
             console.log('child added');
 
-            // var newMessage = $('<p>');
-            // newMessage.text(snap.val().message);
-            // chatBoard.append(newMessage);
-            RenderChat(snap);
+            RenderMessage(snap.val());
         });
 
 
