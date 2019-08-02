@@ -8,16 +8,29 @@ var messageButton = $('#sendMessage');
 
 // Function List
 // 
-// Renders CHat
+// Renders Message onto chatboard
 function RenderMessage(snap) {
 
     console.log('Rendering Msg');
     console.log(snap);
 
+    // Declare new element variables
+    var chatBubble = $('<div>');
     var newMessage = $('<p>');
+    var timeAdded = $('<p>');
+    
+    chatBubble.addClass('chatBubble');
 
+    // Assign snap values for message
     newMessage.text(snap.message);
-    chatBoard.append(newMessage);
+    timeAdded.text('date'+snap.dateAdded);
+
+    // Append both message and time added to the chatbubble
+    chatBubble.append(newMessage);
+    chatBubble.append(timeAdded);
+
+    // Append the chat bubble to the board
+    chatBoard.append(chatBubble);
 }
 
 
@@ -28,12 +41,15 @@ $(document).ready(function () {
     console.log('starting up');
     var ref = database.ref('/' + restaurantName).orderByChild('dateAdded');
 
+    // Take a snapshot and build the message board from the snap
     ref.once('value', function (snap) {
         console.log('Once function');
+        // Clear current board
+        chatBoard.empty();
 
-        // With returned snapshot, iterate through
+        // With returned snapshot, iterate through each key passing to render message
         for (key in snap.val()) {
-            console.log(snap.val()[key]);
+            // Use RenderMessage to print messages
             RenderMessage(snap.val()[key]);
         }
     });
@@ -43,6 +59,7 @@ $(document).ready(function () {
         // Prevent default form submission behavior
         event.preventDefault();
 
+        // Push a new message to the restaurantName reference
         database.ref('/' + restaurantName).push({
             // Push the message
             message: messageBox.val(),
@@ -64,16 +81,13 @@ $(document).ready(function () {
         // 
         // When a child is added within the restaurant database reference
         database.ref('/' + restaurantName).on('child_added', function (snap) {
-            console.log(snap.val());
             console.log('child added');
+            console.log(snap.val());
 
+            // Render the child that was added 
             RenderMessage(snap.val());
         });
 
-
-        //   database.ref('/'+restaurantName).on('value', function(snap) {
-        //       console.log(snap.val());
-        //   });
     })
 
 
