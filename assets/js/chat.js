@@ -1,6 +1,6 @@
 var database = firebase.database();
 
-var restoID = '';
+var restaurantName = 'Blue Barracudas';
 
 var chatBoard = $('#chatBoard');
 var messageBox = $('#chatInput');
@@ -8,8 +8,13 @@ var messageButton = $('#sendMessage');
 
 // var commentsRef = database.ref('post-comments/' + postId);
 
-database.ref().on('child_added', function(snap) {
+database.ref('/'+restaurantName).on('child_added', function(snap) {
   console.log(snap.val());
+
+  var newMessage = $('<p>');
+  newMessage.text(snap.val().message);
+
+  chatBoard.append(newMessage);
 });
 
 // commentsRef.on('child_changed', function(data) {
@@ -20,11 +25,10 @@ database.ref().on('child_removed', function(snap) {
 });
 
 messageButton.on('click', function(event){
-    console.log("it's happening");
     // Prevent default form submission behavior
     event.preventDefault();
 
-    database.ref().push({
+    database.ref('/'+restaurantName).push({
         // Push the message
         message: messageBox.val(),
         // & a timestamp for ordering later
