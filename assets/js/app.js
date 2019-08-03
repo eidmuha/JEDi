@@ -1,68 +1,122 @@
-// Declare Global Variables here
-// The veriable that holds the coordinates
-var coord = [];
-// Function List
 
-// Uses Zomato API to find surrounding restaurants using coordinates (lat, long)
-function findRestaurantsAt(latitude, longitude) {
-    // Declare API key variable
-    var api_key = 'cd7f9f1eddfd3c773af2beab5727f5c9';
+var key = 'AIzaSyBXWH8-f9n91Qeuo_2S9MBM-iV6wf8Odzo';
 
-    // API Call to Zomato
-    $.ajax({
-        // Query & Paremeters
-        url: 'https://developers.zomato.com/api/v2.1/geocode?' + 'lat=' + latitude + '&lon=' + longitude,
-        method: 'GET',
-        // Use headers for authentication
-        headers: {
-            'user-key': api_key
-        }
+var myCurentLocation = []
 
-    }).then(function (response) {
-        // console.log(response);
-        initMap()
-    })
-}
+var myStyles = [
+  {
+    featureType: "poi",
+    
+    stylers: [
+      { visibility: "off" }
+    ]
+  }
+];
+
+var searchInput = "resturants"
+
+
+$(document).on("click", "#submit", function(){
+  searchInput = $("#place-id").val()  
+  initMap()
+})
 
 // Initialize and add the map
 function initMap() {
-    // get my location coordinates
-    var myLocation = {lat: coord[0].lat, lng: coord[0].lng};
-    // The map, centered at the given location
-    var map = new google.maps.Map(
-        document.getElementById('map'), {zoom: 20, center: myLocation});
-    // The marker, positioned at the given location
-    var marker = new google.maps.Marker({position: myLocation, map: map});
+
+  var center = new google.maps.LatLng(myCurentLocation[0].lat.toFixed(3), myCurentLocation[0].lon.toFixed(3));
+  var options = {
+    zoom: 15,
+    center: center,
+    styles: myStyles,
+    mapTypeId: google.maps.MapTypeId.ROADMAP
   }
 
-// Use IP-API to find user coordinates and use to find surrounding restaurants
-function findRestaurantsAroundMe() {
-    // String of concatenated fields to return from API call
-    // var fields = 'status,message,country,countryCode,region,regionName,city,district,zip,lat,lon,timezone,isp,org,as,mobile,query';
-    var api_key = '4dc35c50ed1644efa6d3364edcfb582c';
+  var restIcon = 'http://maps.google.com/mapfiles/ms/micons/restaurant.png';
 
-    // AJAX API Call
-    $.ajax({
-        // Query & Parameters
-        url: 'https://api.ipgeolocation.io/ipgeo?apiKey=' + api_key,
-        method: 'GET'
+  var mapDiv = $("#map")[0]
 
-    }).then(function (response) {
-        console.log(response);
+  // Creates new map
+  var map = new google.maps.Map(mapDiv, options);
 
-        // Assign geolocation values from response to variables
-        var latitude = parseInt(response.latitude);
-        var longitude = parseInt(response.longitude);
+  var infowindow = new google.maps.InfoWindow();
 
-        // push the location in an array, for later use
-        coord.push({lat:latitude, lng: longitude})
-        
-        // Use coordinates to find nearby restaurants
-        findRestaurantsAt(latitude, longitude);
+  var marker = new google.maps.Marker({
+    position: center,
+    map: map
+  });
 
-    })
+  var request = {
+    location: center,
+    radius: '800',
+    type: [searchInput]
+  }
+
+  console.log(searchInput)
+  var service = new google.maps.places.PlacesService(map);
+
+  service.nearbySearch(request, callback);
+
+
+  function callback(results, status) {
+    if (status === google.maps.places.PlacesServiceStatus.OK) {
+      for (let index = 0; index < results.length; index++) {
+        createMarker(results[index]);
+
+
+      }
+    }
+  }
+
+
+  function createMarker(place) {
+    var placeLoc = place.geometry.location;
+    var marker = new google.maps.Marker({
+      position: placeLoc,
+      map: map,
+      icon: restIcon
+    });
+
+    google.maps.event.addListener(marker, 'click', function () {
+
+      infowindow.setContent(place.name);
+      infowindow.open(map, this);
+
+    });
+  }
 }
 
-// Arguments Start Here
-// 
-findRestaurantsAroundMe();
+  
+
+  function findRestaurantsAroundMe() {
+    var la;
+    var lo;
+    // if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(function (position) {
+        myCurentLocation.push({ lat: position.coords.latitude, lon: position.coords.longitude })
+        la = myCurentLocation[0].lat.toFixed(6);
+        lo = myCurentLocation[0].lon.toFixed(6);
+
+
+        
+        var url = 'https://maps.googleapis.com/maps/api/geocode/json?latlng=' + la + ',' + lo + '&key=' + key;
+
+        console.log(url)
+
+        // AJAX API Call
+        $.ajax({
+          // Query & Parameters
+          url: url,
+          method: 'GET'
+
+        }).then(function (response) {
+
+
+          initMap()
+
+        })
+      })
+    // }
+  }
+  // Arguments Start Here
+  findRestaurantsAroundMe();
