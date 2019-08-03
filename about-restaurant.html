@@ -1,49 +1,90 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>JEDi-Feed Me!</title>
-    <!-- Reset -->
-    <link href="assets/css/reset.css" type="text/css" rel="stylesheet" />
-    <!-- Bootstrap -->
-    <link
-      rel="stylesheet"
-      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
-      crossorigin="anonymous"
-    />
-    <!-- Custom CSS-->
-    <link href="assets/css/style.css" type="text/css" rel="stylesheet" />
-  </head>
 
-  <body>
-    <!-- Just so that we can init Google Map -->
-    <div class="container">
-      <div id="map"></div>
-      <div id="restaurant-details" class="jumbotron">
-        <h1 class="display-4"></h1>
-        <p class="lead address"></p>
-        <hr class="my-4" />
-        <p class="rating"></p>
-        <p class="cuisines"></p>
-        <p class="menu"></p>
-        <!-- <hr class="my-4" /> -->
-        <!-- <h4>Gallery</h4> -->
-        <div class="gallery row"></div>
-        <hr class="my-4" />
-        <div class="reviews">
-          <h4>Reviews</h4>
-          <ul></ul>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>JEDi-Feed Me!</title>
+  <!-- Reset -->
+  <link href="assets/css/reset.css" type="text/css" rel="stylesheet" />
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
+  <!-- Custom CSS-->
+  <link href="assets/css/style.css" type="text/css" rel="stylesheet" />
+
+  <!-- The core Firebase JS SDK is always required and must be listed first -->
+  <script src="https://www.gstatic.com/firebasejs/6.3.4/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/6.3.4/firebase-database.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/6.3.4/firebase-auth.js"></script>
+  <!-- Init Database -->
+  <script src="assets/js/firebaseInit.js"></script>
+
+  <!-- Firebase Authentication -->
+  <script src="https://cdn.firebase.com/libs/firebaseui/4.1.0/firebaseui.js"></script>
+  <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/4.1.0/firebaseui.css" />
+  <script type="text/javascript" src="assets/js/AuthenticationSystem.js"></script>
+  <!-- Track authentication -->
+  <script type="text/javascript" src="assets/js/AuthenticationTracker.js"></script>
+
+</head>
+
+<body>
+  <!-- Navbar fixed top -->
+  <nav class="navbar navbar navbar-default bg-dark navbar-fixed-top">
+    <ul class="nav navbar-nav">
+      <!-- Link to Main page (not connected yet) -->
+      <a class="navbar-brand" href="#">
+        <!-- Logo image should go here -->
+        <img src="#" width="30" height="30" class="d-inline-block align-top" alt="">
+        Feed Me!
+      </a>
+      <!--sign Out button area and profile pic -->
+      <li class="nav-item" id="brandProfileSpot">
+        <button type="submit" class="btn btn-primary mb-2" id="signOutButton"><span id="sign-in"></span></button>
+      </li>
+    </ul>
+    <!-- Unordered list floated to the right -->
+    <ul class="nav navbar-nav navbar-right">
+      <!-- Signed in Status text -->
+      <li class="nav-item">
+        <span id="sign-in-status"></span>
+      </li>
+      <li>
+        <!-- Login external container -->
+        <div id="firebaseui-auth-container">
         </div>
+      </li>
+    </ul>
+  </nav>
+  <!-- Just so that we can init Google Map -->
+  <div class="container">
+    <div id="map"></div>
+    <div id="restaurant-details" class="jumbotron">
+      <h1 class="display-4"></h1>
+      <p class="lead address"></p>
+      <hr class="my-4" />
+      <p class="rating"></p>
+      <p class="cuisines"></p>
+      <p class="menu"></p>
+      <!-- <hr class="my-4" /> -->
+      <!-- <h4>Gallery</h4> -->
+      <div class="gallery row"></div>
+      <hr class="my-4" />
+      <div class="reviews">
+        <h4>Reviews</h4>
+        <ul></ul>
       </div>
     </div>
-    <!-- jQuery -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <!-- Google Map API -->
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBXWH8-f9n91Qeuo_2S9MBM-iV6wf8Odzo&libraries=places"></script>
-    <!-- logic javascript codes -->
-    <script src="assets/js/app.js" type="text/javascript"></script>
-  </body>
+  </div>
+  <!-- jQuery -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <!-- Google Map API -->
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBXWH8-f9n91Qeuo_2S9MBM-iV6wf8Odzo&libraries=places">
+  </script>
+  <!-- logic javascript codes -->
+  <script src="assets/js/app.js" type="text/javascript"></script>
+</body>
+
 </html>
