@@ -12,7 +12,6 @@ var messageButton = $('#sendMessage');
 function RenderMessage(snap) {
 
     console.log('Rendering Msg');
-    console.log(snap);
 
     // Declare new element variables
     var chatBubble = $('<li>');
@@ -23,14 +22,6 @@ function RenderMessage(snap) {
     timeAdded.addClass('align-right chatTimeStamp');
 
     chatBubble.addClass('chatBubble');
-
-    var year = moment(new Date(snap.dateAdded)).year();
-    var month = moment(new Date(snap.dateAdded)).month();
-    var day = moment(new Date(snap.dateAdded)).date();
-
-    
-
-    console.log('Year: '+year+'Month: '+month+'Day: '+day);
 
     // Assign snap values for message
     newMessage.text(snap.message);
@@ -54,7 +45,6 @@ $(document).ready(function () {
 
     // Take a snapshot and build the message board from the snap
     ref.once('value', function (snap) {
-        console.log('Once function');
         // Clear current board
         chatBoard.empty();
 
@@ -97,10 +87,6 @@ $(document).ready(function () {
         .limitToLast(1)
         .on('child_added', function (snap) {
             console.log('child added');
-            console.log({
-                snap
-            });
-
 
             // Render the child that was added 
             RenderMessage(snap.val());
