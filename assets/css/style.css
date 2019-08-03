@@ -38,5 +38,11 @@ padding: 0;
     font-size: 0.5em;
 }
 
+/* Navbar CSS */
+
+.nav-item {
+    text-align: right;
+}
+
 
 

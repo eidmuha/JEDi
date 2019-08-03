@@ -1,10 +1,31 @@
+// Assign global variables
 var accountDetails = {};
 var profileSource = '';
 
+function changeDisplayPicture(profileSource) {
+    // Assign variables
+    var profileSpot = $('#brandProfileSpot');
+    // Create new image jquery element
+    var profilePic = $('<img>');
+    // Give Bootstrap classes
+    profilePic.attr('class', "d-inline-block align-top");
+    // Set image source from input
+    profilePic.attr('src', profileSource);
+    // Set width and height parameters
+    profilePic.attr('width', '30');
+    profilePic.attr('height', '30');
+    profilePic.attr('id', 'profilePicture');
+
+    // Append to profile spot
+    profileSpot.append(profilePic);
+}
+
+// On load of app, this function will be called
 initApp = function () {
+    // On change of an authentication state
     firebase.auth().onAuthStateChanged(function (user) {
         if (user) {
-            // User is signed in.
+            // User is signed in. Assign all variables
             var displayName = user.displayName;
             var email = user.email;
             var emailVerified = user.emailVerified;
@@ -16,11 +37,13 @@ initApp = function () {
                 // Use Display name in sign in status. Change text button to sign out
                 document.getElementById('sign-in-status').textContent = 'Signed in as: '+displayName;
 
+                // Display updated status of button
                 document.getElementById('sign-in').textContent = 'Sign out';
+                // Make button visible
                 $('signOutButton').attr('class', 'btn btn-primary mb-2');
 
 
-                // accountDetails
+                // Create object with user details and assign: accountDetails
                 accountDetails = {
                     displayName: displayName,
                     email: email,
@@ -34,19 +57,22 @@ initApp = function () {
 
                 console.log(accountDetails);
 
-                // Build Navbar details
-                profileSource = accountDetails.photoURL;
+                // Change display picture
+                changeDisplayPicture(photoURL);
 
             });
         } else {
-            // Hide the SignOut
-        $('#signOutButton').addClass('hide');
+            // Hide the SignOut button and empty the profile area
+        $('#signOutButton').hide();
+        $('#profilePicture').remove();
 
-            // User is signed out.
+
+
+            // User is signed out. Change text elements as required. Make account details null
             console.log('User signed out');
             document.getElementById('sign-in-status').textContent = 'Signed out';
             document.getElementById('sign-in').textContent = 'Sign in';
-            document.getElementById('account-details').textContent = 'null';
+            accountDetails = 'null';
         }
     }, function (error) {
         console.log(error);
