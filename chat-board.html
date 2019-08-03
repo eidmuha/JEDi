@@ -18,26 +18,13 @@
     <script src="https://www.gstatic.com/firebasejs/6.3.4/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/6.3.4/firebase-database.js"></script>
     <script src="https://www.gstatic.com/firebasejs/6.3.4/firebase-auth.js"></script>
-
-    <script>
-        // Your web app's Firebase configuration
-        var firebaseConfig = {
-            apiKey: "AIzaSyCnDefhLLKDJv5pUBr7FN4-FGASb13-3m0",
-            authDomain: "project-2-4051e.firebaseapp.com",
-            databaseURL: "https://project-2-4051e.firebaseio.com",
-            projectId: "project-2-4051e",
-            storageBucket: "",
-            messagingSenderId: "161199308928",
-            appId: "1:161199308928:web:29c3bb574806a01f"
-        };
-        // Initialize Firebase
-        firebase.initializeApp(firebaseConfig);
-    </script>
-
+    <!-- Init Database -->
+    <script src="assets/js/firebaseInit.js"></script>
+    
     <!-- Firebase Authentication -->
+    <script type="text/javascript" src="assets/js/AuthenticationSystem.js"></script>
     <script src="https://cdn.firebase.com/libs/firebaseui/4.1.0/firebaseui.js"></script>
     <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/4.1.0/firebaseui.css" />
-    <script type="text/javascript" src="assets/js/AuthenticationSystem.js"></script>
     <!-- Track authentication -->
     <script type="text/javascript" src="assets/js/AuthenticationTracker.js"></script>
 
@@ -53,7 +40,6 @@
                 <img src="#" width="30" height="30" class="d-inline-block align-top" alt="">
                 Feed Me!
             </a>
-
             <!--sign Out button area and profile pic -->
             <li class="nav-item" id="brandProfileSpot">
                 <button type="submit" class="btn btn-primary mb-2" id="signOutButton"><span
@@ -97,16 +83,9 @@
 
     <!-- jQuery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <!-- Moment JS -->
-    <script src="https://cdn.jsdelivr.net/npm/moment@2.24.0/moment.min.js"></script>
-
-
 
     <!-- logic javascript -->
     <script src="assets/js/chat.js" type="text/javascript"></script>
-
-
-
 </body>
 
 </html>
