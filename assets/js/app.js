@@ -131,4 +131,3 @@ $(document).on("click", "[data-id]", function(){
   }
   // Arguments Start Here
   findRestaurantsAroundMe();
-  
