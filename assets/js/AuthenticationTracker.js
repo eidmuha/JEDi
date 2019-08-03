@@ -1,3 +1,5 @@
+var accountDetails = {};
+
 initApp = function () {
     firebase.auth().onAuthStateChanged(function (user) {
         if (user) {
@@ -12,7 +14,12 @@ initApp = function () {
             user.getIdToken().then(function (accessToken) {
                 document.getElementById('sign-in-status').textContent = 'Signed in';
                 document.getElementById('sign-in').textContent = 'Sign out';
-                document.getElementById('account-details').textContent = JSON.stringify({
+
+                document.getElementById('account-details').textContent
+                // JSON.parse(, null, '  ')
+
+                // accountDetails
+                accountDetails = {
                     displayName: displayName,
                     email: email,
                     emailVerified: emailVerified,
@@ -21,14 +28,19 @@ initApp = function () {
                     uid: uid,
                     accessToken: accessToken,
                     providerData: providerData
-                }, null, '  ');
+                };
+
+                console.log(accountDetails);
+
+                // Build Navbar details
+                
             });
         } else {
             // User is signed out.
             console.log('User signed out');
-            // document.getElementById('sign-in-status').textContent = 'Signed out';
-            // document.getElementById('sign-in').textContent = 'Sign in';
-            // document.getElementById('account-details').textContent = 'null';
+            document.getElementById('sign-in-status').textContent = 'Signed out';
+            document.getElementById('sign-in').textContent = 'Sign in';
+            document.getElementById('account-details').textContent = 'null';
         }
     }, function (error) {
         console.log(error);

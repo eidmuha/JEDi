@@ -65,7 +65,9 @@ $(document).ready(function () {
             // Push the message
             message: messageBox.val(),
             // & a timestamp for ordering later
-            dateAdded: firebase.database.ServerValue.TIMESTAMP
+            dateAdded: firebase.database.ServerValue.TIMESTAMP,
+            // User ID
+            userID: accountDetails.uid
         }, function (error) {
             if (error) {
                 // The write failed...
