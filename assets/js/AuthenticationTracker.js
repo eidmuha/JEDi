@@ -35,12 +35,14 @@ initApp = function () {
             var providerData = user.providerData;
             user.getIdToken().then(function (accessToken) {
                 // Use Display name in sign in status. Change text button to sign out
-                document.getElementById('sign-in-status').textContent = 'Signed in as: '+displayName;
+                document.getElementById('sign-in-status').textContent = 'Signed in as: ' + displayName;
 
                 // Display updated status of button
                 document.getElementById('sign-in').textContent = 'Sign out';
                 // Make button visible
                 $('signOutButton').attr('class', 'btn btn-primary mb-2');
+                $('.firebaseui-list-item button').hide();
+
 
 
                 // Create object with user details and assign: accountDetails
@@ -63,8 +65,9 @@ initApp = function () {
             });
         } else {
             // Hide the SignOut button and empty the profile area
-        $('#signOutButton').hide();
-        $('#profilePicture').remove();
+            $('#signOutButton').hide();
+            $('#profilePicture').remove();
+            $('.firebaseui-list-item button').show();
 
 
 
@@ -79,6 +82,7 @@ initApp = function () {
     });
 };
 
+// When window loads, run initApp
 window.addEventListener('load', function () {
     initApp();
 });
