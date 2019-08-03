@@ -5,6 +5,7 @@ var restaurantName = 'Blue Barracudas';
 var chatBoard = $('#messageBoard');
 var messageBox = $('#chatInput');
 var messageButton = $('#sendMessage');
+var signOutButton = $('#signOutButton');
 
 // Function List
 // 
@@ -15,8 +16,12 @@ function RenderMessage(snap) {
 
     // Declare new element variables
     var chatBubble = $('<li>');
+    var messageSpace = $('<row>');
     var newMessage = $('<span>');
     var timeAdded = $('<span>');
+
+    // Message CSS
+    messageSpace.addClass('messageSpace');
 
     newMessage.addClass('align-left');
     timeAdded.addClass('align-right chatTimeStamp');
@@ -35,12 +40,72 @@ function RenderMessage(snap) {
     chatBoard.append(chatBubble);
 }
 
+// Event listeners
+// 
+// Message Button 
+messageButton.on('click', function (event) {
+    // Prevent default form submission behavior
+    event.preventDefault();
 
+    // If the user is logged in, & has a user id then allow them to message
+    if (accountDetails.uid != null) {
+        // Push a new message to the restaurantName reference
+        database.ref('/' + restaurantName).push({
+            // Push the message
+            message: messageBox.val(),
+            // & a timestamp for ordering later
+            dateAdded: firebase.database.ServerValue.TIMESTAMP,
+            // User ID
+            userID: accountDetails.uid
+        }, function (error) {
+            if (error) {
+                // The write failed...
+                console.log(error);
+            } else {
+                // Data saved successfully!
+                console.log('Message sent successfully!');
+                // Clear message box
+                messageBox.val('');
+            }
+        });
+        // Failed to message due to lack of user credentials
+    } else {
+        console.log('Failed to retrieve uid');
+        // TODO: make a MODAL that will inform the user why they couldn't login with a close button
+        // 
+
+
+    }
+
+
+})
+//   Database listeners
+// 
+// When a child is added within the restaurant database reference
+database.ref('/' + restaurantName)
+    .endAt()
+    // Limit to the last item
+    .limitToLast(1)
+    // When child is added
+    .on('child_added', function (snap) {
+        console.log('child added');
+
+        // Render the child that was added 
+        RenderMessage(snap.val());
+    });
+
+// Make user sign out
+signOutButton.on('click', function () {
+    // Sign out from Firebase
+    firebase.auth().signOut();
+});
+
+
+// Arguments begin here
+// 
 // When page is loaded
 $(document).ready(function () {
 
-    // Arguments begin here
-    console.log('starting up');
     var ref = database.ref('/' + restaurantName).orderByChild('dateAdded');
 
     // Take a snapshot and build the message board from the snap
@@ -55,41 +120,6 @@ $(document).ready(function () {
         }
     });
 
-    // Event listener
-    messageButton.on('click', function (event) {
-        // Prevent default form submission behavior
-        event.preventDefault();
 
-        // Push a new message to the restaurantName reference
-        database.ref('/' + restaurantName).push({
-            // Push the message
-            message: messageBox.val(),
-            // & a timestamp for ordering later
-            dateAdded: firebase.database.ServerValue.TIMESTAMP
-        }, function (error) {
-            if (error) {
-                // The write failed...
-                console.log(error);
-            } else {
-                // Data saved successfully!
-                console.log('Message sent successfully!');
-                messageBox.val('');
-            }
-        });
-
-    })
-    //   Database listeners
-    // 
-    // When a child is added within the restaurant database reference
-    // .limitToLast(1)
-    database.ref('/' + restaurantName)
-        .endAt()
-        .limitToLast(1)
-        .on('child_added', function (snap) {
-            console.log('child added');
-
-            // Render the child that was added 
-            RenderMessage(snap.val());
-        });
 
 });

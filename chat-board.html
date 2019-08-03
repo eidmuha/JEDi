@@ -18,38 +18,54 @@
     <script src="https://www.gstatic.com/firebasejs/6.3.4/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/6.3.4/firebase-database.js"></script>
     <script src="https://www.gstatic.com/firebasejs/6.3.4/firebase-auth.js"></script>
-
-    <script>
-        // Your web app's Firebase configuration
-        var firebaseConfig = {
-            apiKey: "AIzaSyCnDefhLLKDJv5pUBr7FN4-FGASb13-3m0",
-            authDomain: "project-2-4051e.firebaseapp.com",
-            databaseURL: "https://project-2-4051e.firebaseio.com",
-            projectId: "project-2-4051e",
-            storageBucket: "",
-            messagingSenderId: "161199308928",
-            appId: "1:161199308928:web:29c3bb574806a01f"
-        };
-        // Initialize Firebase
-        firebase.initializeApp(firebaseConfig);
-    </script>
-
+    <!-- Init Database -->
+    <script src="assets/js/firebaseInit.js"></script>
+    
     <!-- Firebase Authentication -->
+    <script type="text/javascript" src="assets/js/AuthenticationSystem.js"></script>
     <script src="https://cdn.firebase.com/libs/firebaseui/4.1.0/firebaseui.js"></script>
     <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/4.1.0/firebaseui.css" />
+    <!-- Track authentication -->
+    <script type="text/javascript" src="assets/js/AuthenticationTracker.js"></script>
 
 </head>
 
 <body>
-    <!-- Login container -->
-    <div id="firebaseui-auth-container"></div>
+    <!-- Navbar fixed top -->
+    <nav class="navbar navbar navbar-default bg-dark navbar-fixed-top">
+        <ul class="nav navbar-nav">
+            <!-- Link to Main page (not connected yet) -->
+            <a class="navbar-brand" href="#">
+                <!-- Logo image should go here -->
+                <img src="#" width="30" height="30" class="d-inline-block align-top" alt="">
+                Feed Me!
+            </a>
+            <!--sign Out button area and profile pic -->
+            <li class="nav-item" id="brandProfileSpot">
+                <button type="submit" class="btn btn-primary mb-2" id="signOutButton"><span
+                        id="sign-in"></span></button>
+            </li>
+        </ul>
+        <!-- Unordered list floated to the right -->
+        <ul class="nav navbar-nav navbar-right">
+            <!-- Signed in Status text -->
+            <li class="nav-item">
+                <span id="sign-in-status"></span>
+            </li>
+            <li>
+                <!-- Login external container -->
+                <div id="firebaseui-auth-container">
+                </div>
+            </li>
+        </ul>
+    </nav>
+
 
     <!-- div that holds the chat board -->
     <div class="container">
         <!-- Where messages appear -->
         <div>
             <ul id="messageBoard">
-
             </ul>
         </div>
 
@@ -66,19 +82,9 @@
 
     <!-- jQuery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <!-- Moment JS -->
-    <script src="https://cdn.jsdelivr.net/npm/moment@2.24.0/moment.min.js"></script>
 
-
-
-    <!-- logic javascript codes -->
+    <!-- logic javascript -->
     <script src="assets/js/chat.js" type="text/javascript"></script>
-
-    <!-- Firebase Authentication -->
-    <script type="text/javascript" src="assets/js/AuthenticationSystem.js"></script>
-    <!-- Track authentication -->
-    <script type="text/javascript" src="assets/js/AuthenticationTracker.js"></script>
-
 </body>
 
 </html>
