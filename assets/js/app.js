@@ -1,6 +1,8 @@
 
 var key = 'AIzaSyBXWH8-f9n91Qeuo_2S9MBM-iV6wf8Odzo';
 
+var url;
+
 var myCurentLocation = []
 
 var myStyles = [
@@ -70,6 +72,8 @@ function initMap() {
 
 
   function createMarker(place) {
+    //   console.log(place)
+    
     var placeLoc = place.geometry.location;
     var marker = new google.maps.Marker({
       position: placeLoc,
@@ -77,14 +81,22 @@ function initMap() {
       icon: restIcon
     });
 
+    
+    var content = '<h4>'+place.name+'</h4><br><h5><a href="#" class="float-right" data-id = '+place.place_id+'>More <i class="fa fa-angle-double-right"></i></h5></a>';
+
+
     google.maps.event.addListener(marker, 'click', function () {
 
-      infowindow.setContent(place.name);
+      infowindow.setContent(content);
       infowindow.open(map, this);
 
     });
   }
 }
+
+$(document).on("click", "[data-id]", function(){
+    alert($(this).attr("data-id"))
+})
 
   
 
@@ -97,9 +109,8 @@ function initMap() {
         la = myCurentLocation[0].lat.toFixed(6);
         lo = myCurentLocation[0].lon.toFixed(6);
 
-
         
-        var url = 'https://maps.googleapis.com/maps/api/geocode/json?latlng=' + la + ',' + lo + '&key=' + key;
+        url = 'https://maps.googleapis.com/maps/api/geocode/json?latlng=' + la + ',' + lo + '&key=' + key;
 
         console.log(url)
 
@@ -120,3 +131,4 @@ function initMap() {
   }
   // Arguments Start Here
   findRestaurantsAroundMe();
+  
