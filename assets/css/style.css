@@ -1,0 +1,10 @@
+/* height of hte map */
+#map {
+height: 100%;
+}
+/*Makes the main page fill the window. */
+html, body {
+height: 100%;
+margin: 0;
+padding: 0;
+}
