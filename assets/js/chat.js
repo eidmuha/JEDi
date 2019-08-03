@@ -15,7 +15,7 @@ function RenderMessage(snap) {
     console.log(snap);
 
     // Declare new element variables
-    var chatBubble = $('<div>');
+    var chatBubble = $('<li>');
     var newMessage = $('<p>');
     var timeAdded = $('<p>');
     
@@ -80,9 +80,11 @@ $(document).ready(function () {
         //   Database listeners
         // 
         // When a child is added within the restaurant database reference
+        // .limitToLast(1)
         database.ref('/' + restaurantName).on('child_added', function (snap) {
             console.log('child added');
             console.log(snap.val());
+
 
             // Render the child that was added 
             RenderMessage(snap.val());

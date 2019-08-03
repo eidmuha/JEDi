@@ -13,3 +13,7 @@ padding: 0;
 .chatBubble {
     display: block;
 }
+
+.messageBoard li {
+    display: inline;
+}
