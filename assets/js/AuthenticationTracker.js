@@ -1,4 +1,5 @@
 var accountDetails = {};
+var profileSource = '';
 
 initApp = function () {
     firebase.auth().onAuthStateChanged(function (user) {
@@ -12,11 +13,12 @@ initApp = function () {
             var phoneNumber = user.phoneNumber;
             var providerData = user.providerData;
             user.getIdToken().then(function (accessToken) {
-                document.getElementById('sign-in-status').textContent = 'Signed in';
-                document.getElementById('sign-in').textContent = 'Sign out';
+                // Use Display name in sign in status. Change text button to sign out
+                document.getElementById('sign-in-status').textContent = 'Signed in as: '+displayName;
 
-                document.getElementById('account-details').textContent
-                // JSON.parse(, null, '  ')
+                document.getElementById('sign-in').textContent = 'Sign out';
+                $('signOutButton').attr('class', 'btn btn-primary mb-2');
+
 
                 // accountDetails
                 accountDetails = {
@@ -33,9 +35,13 @@ initApp = function () {
                 console.log(accountDetails);
 
                 // Build Navbar details
-                
+                profileSource = accountDetails.photoURL;
+
             });
         } else {
+            // Hide the SignOut
+        $('#signOutButton').addClass('hide');
+
             // User is signed out.
             console.log('User signed out');
             document.getElementById('sign-in-status').textContent = 'Signed out';

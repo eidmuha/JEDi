@@ -5,6 +5,7 @@ var restaurantName = 'Blue Barracudas';
 var chatBoard = $('#messageBoard');
 var messageBox = $('#chatInput');
 var messageButton = $('#sendMessage');
+var signOutButton = $('#signOutButton');
 
 // Function List
 // 
@@ -56,28 +57,37 @@ $(document).ready(function () {
     });
 
     // Event listener
+    // 
+    // Message Button 
     messageButton.on('click', function (event) {
         // Prevent default form submission behavior
         event.preventDefault();
 
-        // Push a new message to the restaurantName reference
-        database.ref('/' + restaurantName).push({
-            // Push the message
-            message: messageBox.val(),
-            // & a timestamp for ordering later
-            dateAdded: firebase.database.ServerValue.TIMESTAMP,
-            // User ID
-            userID: accountDetails.uid
-        }, function (error) {
-            if (error) {
-                // The write failed...
-                console.log(error);
-            } else {
-                // Data saved successfully!
-                console.log('Message sent successfully!');
-                messageBox.val('');
-            }
-        });
+        // If the user is logged in, & has a user id then allow them to message
+        if (accountDetails.uid != null) {
+            // Push a new message to the restaurantName reference
+            database.ref('/' + restaurantName).push({
+                // Push the message
+                message: messageBox.val(),
+                // & a timestamp for ordering later
+                dateAdded: firebase.database.ServerValue.TIMESTAMP,
+                // User ID
+                userID: accountDetails.uid
+            }, function (error) {
+                if (error) {
+                    // The write failed...
+                    console.log(error);
+                } else {
+                    // Data saved successfully!
+                    console.log('Message sent successfully!');
+                    messageBox.val('');
+                }
+            });
+            // Failed to message due to lack of user credentials
+        } else {
+            console.log('Failed to retrieve uid');
+        }
+
 
     })
     //   Database listeners
@@ -93,5 +103,15 @@ $(document).ready(function () {
             // Render the child that was added 
             RenderMessage(snap.val());
         });
+
+    // Make user sign out
+    signOutButton.on('click', function() {
+        // Sign out from Firebase
+        firebase.auth().signOut();
+
+        signOutButton.addClass('hide');
+
+    });
+
 
 });
