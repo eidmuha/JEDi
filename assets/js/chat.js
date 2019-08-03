@@ -16,14 +16,25 @@ function RenderMessage(snap) {
 
     // Declare new element variables
     var chatBubble = $('<li>');
-    var newMessage = $('<p>');
-    var timeAdded = $('<p>');
+    var newMessage = $('<span>');
+    var timeAdded = $('<span>');
+
+    newMessage.addClass('align-left');
+    timeAdded.addClass('align-right chatTimeStamp');
 
     chatBubble.addClass('chatBubble');
 
+    var year = moment(new Date(snap.dateAdded)).year();
+    var month = moment(new Date(snap.dateAdded)).month();
+    var day = moment(new Date(snap.dateAdded)).date();
+
+    
+
+    console.log('Year: '+year+'Month: '+month+'Day: '+day);
+
     // Assign snap values for message
     newMessage.text(snap.message);
-    timeAdded.text('date' + snap.dateAdded);
+    timeAdded.text(new Date(snap.dateAdded));
 
     // Append both message and time added to the chatbubble
     chatBubble.append(newMessage);
