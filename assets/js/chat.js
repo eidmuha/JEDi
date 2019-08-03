@@ -18,12 +18,12 @@ function RenderMessage(snap) {
     var chatBubble = $('<li>');
     var newMessage = $('<p>');
     var timeAdded = $('<p>');
-    
+
     chatBubble.addClass('chatBubble');
 
     // Assign snap values for message
     newMessage.text(snap.message);
-    timeAdded.text('date'+snap.dateAdded);
+    timeAdded.text('date' + snap.dateAdded);
 
     // Append both message and time added to the chatbubble
     chatBubble.append(newMessage);
@@ -72,25 +72,27 @@ $(document).ready(function () {
             } else {
                 // Data saved successfully!
                 console.log('Message sent successfully!');
-
+                messageBox.val('');
             }
         });
 
-
-        //   Database listeners
-        // 
-        // When a child is added within the restaurant database reference
-        // .limitToLast(1)
-        database.ref('/' + restaurantName).on('child_added', function (snap) {
+    })
+    //   Database listeners
+    // 
+    // When a child is added within the restaurant database reference
+    // .limitToLast(1)
+    database.ref('/' + restaurantName)
+        .endAt()
+        .limitToLast(1)
+        .on('child_added', function (snap) {
             console.log('child added');
-            console.log(snap.val());
+            console.log({
+                snap
+            });
 
 
             // Render the child that was added 
             RenderMessage(snap.val());
         });
-
-    })
-
 
 });
