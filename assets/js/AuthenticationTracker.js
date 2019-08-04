@@ -5,6 +5,7 @@ var profileSource = '';
 // Function List
 // 
 function changeDisplayPicture(profileSource) {
+    var singedInLocation = $("#rightbar");
     // Assign variables
     var profileSpot = $('#brandProfileSpot');
     // Create new image jquery element
@@ -19,7 +20,8 @@ function changeDisplayPicture(profileSource) {
     profilePic.attr('id', 'profilePicture');
 
     // Append to profile spot
-    profileSpot.append(profilePic);
+    
+    singedInLocation.prepend(profileSpot.prepend(profilePic));
 }
 
 // On load of app, this function will be called
@@ -37,7 +39,7 @@ initApp = function () {
             var providerData = user.providerData;
             user.getIdToken().then(function (accessToken) {
                 // Use Display name in sign in status. Change text button to sign out
-                document.getElementById('sign-in-status').textContent = 'Signed in as: ' + displayName;
+                document.getElementById('sign-in-status').innerHTML = 'Signed in as: <b id="dname">' + displayName + '</b>';
 
                 // Display updated status of button
                 document.getElementById('sign-in').textContent = 'Sign out';
