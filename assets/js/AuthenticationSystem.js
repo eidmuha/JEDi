@@ -1,6 +1,6 @@
 // FirebaseUI config.
 var uiConfig = {
-    signInSuccessUrl: 'index.html',
+    signInSuccessUrl: 'chat-board.html',
     // Place a function with a call
     signInOptions: [
         // Leave the lines as is for the providers you want to offer your users.
@@ -19,8 +19,3 @@ var uiConfig = {
 var ui = new firebaseui.auth.AuthUI(firebase.auth());
 // The start method will wait until the DOM is loaded.
 ui.start('#firebaseui-auth-container', uiConfig);
-if (ui.isPendingRedirect()) {
-    console.log('in the if')
-} else {
-    console.log('didn\'t run');
-}

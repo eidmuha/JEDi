@@ -2,6 +2,8 @@
 var accountDetails = {};
 var profileSource = '';
 
+// Function List
+// 
 function changeDisplayPicture(profileSource) {
     var singedInLocation = $("#rightbar");
     // Assign variables
@@ -58,8 +60,6 @@ initApp = function () {
                     accessToken: accessToken,
                     providerData: providerData
                 };
-
-                console.log(accountDetails);
 
                 // Change display picture
                 changeDisplayPicture(photoURL);
