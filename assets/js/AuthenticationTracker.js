@@ -59,8 +59,6 @@ initApp = function () {
                     providerData: providerData
                 };
 
-                console.log(accessToken);
-
                 // Change display picture
                 changeDisplayPicture(photoURL);
 

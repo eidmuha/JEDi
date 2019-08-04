@@ -1,5 +1,5 @@
 var database = firebase.database();
-
+// Restaurant Variable from
 var restaurantName = 'Blue Barracudas';
 
 var chatBoard = $('#messageBoard');
@@ -7,14 +7,12 @@ var messageBox = $('#chatInput');
 var messageButton = $('#sendMessage');
 var signOutButton = $('#signOutButton');
 var alertModal = $('#alertModal');
+var pageRestaurantTitle = $('#restaurantName');
 
 // Function List
 // 
 // Renders Message onto chatboard
 function RenderMessage(snap) {
-
-    console.log('Rendering Msg');
-
     // Declare new element variables
     var chatBubble = $('<li>');
     var messageSpace = $('<row>');
@@ -62,18 +60,14 @@ messageButton.on('click', function (event) {
         }, function (error) {
             if (error) {
                 // The write failed...
-                console.log(error);
             } else {
                 // Data saved successfully!
-                console.log('Message sent successfully!');
                 // Clear message box
                 messageBox.val('');
             }
         });
         // Failed to message due to lack of user credentials
-    } else {
-        console.log('Failed to retrieve uid');
-        
+    } else {        
         // Shows Alert modal informing user requirement of Google login to post
         alertModal.show();
 
@@ -90,8 +84,6 @@ database.ref('/' + restaurantName)
     .limitToLast(1)
     // When child is added
     .on('child_added', function (snap) {
-        console.log('child added');
-
         // Render the child that was added 
         RenderMessage(snap.val());
     });
@@ -113,7 +105,10 @@ $('.modal button').on('click', function () {
 // 
 // When page is loaded
 $(document).ready(function () {
+    // Set page name to restaurant Title
+    pageRestaurantTitle.text(restaurantName);
 
+    // Set parameters for database query
     var ref = database.ref('/' + restaurantName).orderByChild('dateAdded');
 
     // Take a snapshot and build the message board from the snap
