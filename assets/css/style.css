@@ -22,3 +22,35 @@ padding: 0;
     line-height: 30px;
     padding-left: 10px;
   }
+
+
+/* Chat board CSS */
+.chatBubble {
+    display: flex;
+    justify-content: space-between;
+}
+
+.messageBoard li {
+    display: inline;
+}
+
+.chatTimeStamp {
+    font-size: 0.5em;
+}
+
+.messageSpace {
+    width: 50%;
+    float: left;
+}
+
+/* Navbar CSS */
+
+.nav-item {
+    text-align: right;
+}
+
+nav {
+    color: aliceblue;
+}
+
+
