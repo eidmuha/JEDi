@@ -35,7 +35,8 @@ $(document).on("click", "#submit", function () {
 // Initialize and add the map
 function initMap() {
 
-  searchInput = $("#place-id").val().trim();
+  // searchInput = $("#place-id").val().trim();
+  searchInput = "resturants"
 
   options = {
     zoom: 16,
