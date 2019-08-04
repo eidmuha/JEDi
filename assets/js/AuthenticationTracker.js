@@ -2,6 +2,8 @@
 var accountDetails = {};
 var profileSource = '';
 
+// Function List
+// 
 function changeDisplayPicture(profileSource) {
     // Assign variables
     var profileSpot = $('#brandProfileSpot');
@@ -57,7 +59,7 @@ initApp = function () {
                     providerData: providerData
                 };
 
-                console.log(accountDetails);
+                console.log(accessToken);
 
                 // Change display picture
                 changeDisplayPicture(photoURL);
