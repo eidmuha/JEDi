@@ -6,6 +6,7 @@ var chatBoard = $('#messageBoard');
 var messageBox = $('#chatInput');
 var messageButton = $('#sendMessage');
 var signOutButton = $('#signOutButton');
+var alertModal = $('#alertModal');
 
 // Function List
 // 
@@ -40,6 +41,7 @@ function RenderMessage(snap) {
     chatBoard.append(chatBubble);
 }
 
+
 // Event listeners
 // 
 // Message Button 
@@ -73,7 +75,7 @@ messageButton.on('click', function (event) {
         console.log('Failed to retrieve uid');
         // TODO: make a MODAL that will inform the user why they couldn't login with a close button
         // 
-
+        alertModal.show();
 
     }
 
@@ -94,12 +96,18 @@ database.ref('/' + restaurantName)
         RenderMessage(snap.val());
     });
 
-// Make user sign out
+// Make user sign out when they click on the sign out Button
 signOutButton.on('click', function () {
     // Sign out from Firebase
     firebase.auth().signOut();
 });
 
+// Event listener for all button clicks in Modal: Close modal 
+$('.modal button').on('click', function () {
+
+    // Hide modal
+    alertModal.hide();
+});
 
 // Arguments begin here
 // 
