@@ -73,8 +73,8 @@ messageButton.on('click', function (event) {
         // Failed to message due to lack of user credentials
     } else {
         console.log('Failed to retrieve uid');
-        // TODO: make a MODAL that will inform the user why they couldn't login with a close button
-        // 
+        
+        // Shows Alert modal informing user requirement of Google login to post
         alertModal.show();
 
     }
@@ -102,7 +102,7 @@ signOutButton.on('click', function () {
     firebase.auth().signOut();
 });
 
-// Event listener for all button clicks in Modal: Close modal 
+// Event listener for clicks on all buttons in Modal: clicks will close modal 
 $('.modal button').on('click', function () {
 
     // Hide modal

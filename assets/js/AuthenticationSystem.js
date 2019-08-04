@@ -1,6 +1,6 @@
 // FirebaseUI config.
 var uiConfig = {
-    signInSuccessUrl: 'index.html',
+    signInSuccessUrl: 'chat-board.html',
     // Place a function with a call
     signInOptions: [
         // Leave the lines as is for the providers you want to offer your users.
