@@ -47,6 +47,14 @@ function RenderMessage(snap) {
 
   // Append the chat bubble to the board
   chatBoard.append(chatBubble);
+
+  if (accountDetails.uid === snap.userID) {
+    newMessage.css("color", "blue");
+    $(".user").css("color", "black");
+  } else {
+    newMessage.css("color", "green");
+    $(".user").css("color", "black");
+  }
 }
 
 // Event listeners
