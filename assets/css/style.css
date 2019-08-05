@@ -76,3 +76,7 @@ nav {
 /* .createName {
   display: none;
 } */
+
+.user {
+  font-weight: 600;
+}

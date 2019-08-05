@@ -23,7 +23,9 @@ function RenderMessage(snap) {
   // Declare new element variables
   var chatBubble = $("<li>");
   var messageSpace = $("<row>");
-  var newMessage = $(`<span>${snap.userName} : ${snap.message} </span>`);
+  var newMessage = $(
+    `<span><a class="user">${snap.userName}</a> : ${snap.message} </span>`
+  );
   var timeAdded = $("<span>");
   var msgDateTime = moment(snap.dateAdded).format("DD/MM/YY h:mm a");
 
