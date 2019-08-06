@@ -1,5 +1,5 @@
 function findRestaurantDetail(placeId) {
-  var map = new google.maps.Map($("#map")[0]);
+  var map = new google.maps.Map($("#res-detail")[0]);
 
   var service = new google.maps.places.PlacesService(map);
 
