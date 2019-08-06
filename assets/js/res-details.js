@@ -86,3 +86,8 @@ var getUrlParameter = function getUrlParameter(sParam) {
 var placeID = getUrlParameter("place_id");
 
 findRestaurantDetail(placeID);
+
+$(".chat-button").on("click", function() {
+  $("#exampleModalCenter").modal("show");
+  console.log("click");
+});
