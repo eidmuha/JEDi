@@ -296,6 +296,6 @@ function setRating(placeRating) {
 }
 
 // click on each more>> link, (:)
-$(document).on("click", "[data-id]", function () {
-  alert($(this).attr("data-id"));
+$(document).on("click", "[data-id]", function() {
+  //alert($(this).attr("data-id"));
 });
