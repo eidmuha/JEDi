@@ -64,20 +64,3 @@ nav {
 #dname {
   color: blue;
 }
-
-.btn {
-  margin-top: 10px;
-}
-
-.createMsg {
-  display: none;
-}
-
-/* .createName {
-  display: none;
-} */
-
-.user {
-  font-weight: 600;
-  color: black;
-}
