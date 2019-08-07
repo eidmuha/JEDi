@@ -44,7 +44,7 @@ initApp = function () {
                 // Display updated status of button
                 document.getElementById('sign-in').textContent = 'Sign out';
                 // Make button visible
-                $('signOutButton').attr('class', 'btn btn-primary mb-2');
+                $('signOutButton').attr('class', 'btn btn-primary mb-2 btn-sm');
                 $('.firebaseui-list-item button').hide();
 
 
