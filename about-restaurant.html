@@ -60,7 +60,6 @@
         width="30" height="30" class="d-inline-block align-top" alt="" />
       Feed Me!
     </a>
-    <span class="nav navbar-nav navbar-center" id="restaurantName"></span>
 
     <div>
       <!--sign Out button area and profile pic -->
@@ -167,13 +166,12 @@
   </div>
 
   <!-- Modal-->
-  <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+  <div class="modal fade" id="chatModal" tabindex="-1" role="dialog" aria-labelledby="ChatModal"
     aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalCenterTitle">
-            Modal title
+          <h5 class="modal-title"><span id="restaurantName"></span>
           </h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
@@ -182,7 +180,7 @@
         <div class="modal-body">
           <div class="container chatArea">
             <!-- Where messages appear -->
-            <div>
+            <div id="messageTableContainer">
               <ul id="messageBoard"></ul>
             </div>
 

@@ -1,3 +1,5 @@
+var restoInfo = {name: '', id: 'id'};
+
 function findRestaurantDetail(placeId) {
   var map = new google.maps.Map($("#res-detail")[0]);
 
@@ -22,6 +24,9 @@ function findRestaurantDetail(placeId) {
     function(place, status) {
       console.log({ place, status });
       console.log(place);
+      // Assign place information to a global variable for the Chat Board
+      restoInfo.name = place.name;
+
       $(".display-4").append(place.name);
       $(".lead").append(place.formatted_address);
       $(".contactdetails").append(place.formatted_phone_number);
@@ -87,7 +92,7 @@ var placeID = getUrlParameter("place_id");
 
 findRestaurantDetail(placeID);
 
-$(".chat-button").on("click", function() {
-  $("#exampleModalCenter").modal("show");
-  console.log("click");
-});
+// Assign the placeID to restoInfo
+restoInfo.id = placeID;
+
+
