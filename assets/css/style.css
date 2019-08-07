@@ -16,6 +16,7 @@ body {
   font-size: 15px;
   font-weight: 300;
 }
+
 #infowindow-content .title {
   font-weight: bold;
 }
@@ -47,6 +48,7 @@ body {
   line-height: 30px;
   padding-left: 10px;
 }
+
 .pac-card {
   margin: 10px 10px 0 0;
   border-radius: 2px 0 0 2px;
@@ -62,6 +64,7 @@ body {
   padding-bottom: 12px;
   margin-right: 12px;
 }
+
 .pac-controls {
   display: inline-block;
   padding: 5px 11px;
@@ -72,6 +75,7 @@ body {
   font-size: 13px;
   font-weight: 300;
 }
+
 #pac-input {
   background-color: #fff;
   font-family: Roboto;
@@ -94,6 +98,7 @@ body {
   font-weight: 500;
   padding: 6px 12px;
 }
+
 #target {
   width: 345px;
 }
@@ -120,8 +125,8 @@ body {
 .chatArea {
   border: 1px solid;
   padding: 10px;
-  box-shadow: 5px 10px 8px 10px #888888;
   margin-top: 5px;
+
 }
 
 /* Navbar CSS */
@@ -140,4 +145,20 @@ nav {
 
 .createMsg {
   display: none;
+}
+
+/* Modal Chat CSS */
+/* .modal-footer {
+  position: fixed;
+  bottom: 20px;
+} */
+
+/* Important part */
+.modal-dialog {
+  overflow-y: initial !important
+}
+
+.modal-body {
+  height: 450px;
+  overflow-y: auto;
 }

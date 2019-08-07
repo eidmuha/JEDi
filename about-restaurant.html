@@ -1,309 +1,256 @@
 <!DOCTYPE html>
 <html lang="en-us">
-  <head>
-    <!-- Meta -->
-    <meta charset="utf-8" />
-    <meta http-equiv="x-ua-compatible" content="ie=edge" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
 
-    <title>About</title>
-    <meta name="description" content="" />
+<head>
+  <!-- Meta -->
+  <meta charset="utf-8" />
+  <meta http-equiv="x-ua-compatible" content="ie=edge" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
 
-    <!-- Reset -->
-    <link href="assets/css/reset.css" type="text/css" rel="stylesheet" />
-    <!-- Bootstrap -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <title>About</title>
+  <meta name="description" content="" />
 
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-      crossorigin="anonymous"
-    ></script>
-    <link
-      rel="stylesheet"
-      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
-      crossorigin="anonymous"
-    />
-    <!-- Custom CSS-->
-    <link href="assets/css/style.css" type="text/css" rel="stylesheet" />
+  <!-- Reset -->
+  <link href="assets/css/reset.css" type="text/css" rel="stylesheet" />
+  <!-- Bootstrap -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
-    <!-- The compiled CSS file -->
-    <link rel="stylesheet" href="assets/css/production.css" />
-    <!-- Web fonts -->
-    <link
-      href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i|Roboto+Condensed:700"
-      rel="stylesheet"
-    />
-    <!-- favicon.ico. Place these in the root directory. -->
-    <link rel="shortcut icon" href="favicon.ico" />
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBXWH8-f9n91Qeuo_2S9MBM-iV6wf8Odzo&libraries=places"></script>
-    <!-- The core Firebase JS SDK is always required and must be listed first -->
-    <script src="https://www.gstatic.com/firebasejs/6.3.4/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/6.3.4/firebase-database.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/6.3.4/firebase-auth.js"></script>
-    <!-- Init Database -->
-    <script src="assets/js/firebaseInit.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+  </script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+  </script>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
+  <!-- Custom CSS-->
+  <link href="assets/css/style.css" type="text/css" rel="stylesheet" />
 
-    <!-- Firebase Authentication -->
-    <script src="https://cdn.firebase.com/libs/firebaseui/4.1.0/firebaseui.js"></script>
-    <link
-      type="text/css"
-      rel="stylesheet"
-      href="https://cdn.firebase.com/libs/firebaseui/4.1.0/firebaseui.css"
-    />
-    <script
-      type="text/javascript"
-      src="assets/js/AuthenticationSystem.js"
-    ></script>
-    <!-- Track authentication -->
-    <script
-      type="text/javascript"
-      src="assets/js/AuthenticationTracker.js"
-    ></script>
-  </head>
+  <!-- The compiled CSS file -->
+  <link rel="stylesheet" href="assets/css/production.css" />
+  <!-- Web fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i|Roboto+Condensed:700" rel="stylesheet" />
+  <!-- favicon.ico. Place these in the root directory. -->
+  <link rel="shortcut icon" href="favicon.ico" />
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBXWH8-f9n91Qeuo_2S9MBM-iV6wf8Odzo&libraries=places">
+  </script>
+  <!-- The core Firebase JS SDK is always required and must be listed first -->
+  <script src="https://www.gstatic.com/firebasejs/6.3.4/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/6.3.4/firebase-database.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/6.3.4/firebase-auth.js"></script>
+  <!-- Init Database -->
+  <script src="assets/js/firebaseInit.js"></script>
 
-  <body>
-    <nav class="navbar navbar navbar-default bg-dark navbar-fixed-top">
-      <!-- <ul class="nav navbar-nav"> -->
-      <!-- Link to Main page (not connected yet) -->
-      <a class="navbar-brand mt-n4" href="#">
-        <!-- Logo image should go here -->
-        <img
-          src="https://cdn.imgbin.com/6/17/21/imgbin-web-feed-rss-icon-elephant-cute-animal-theme-subscribe-to-rss-icon-material-4aU4PmZbYSiw3f0qTmCqEX9Jj.jpg"
-          width="30"
-          height="30"
-          class="d-inline-block align-top"
-          alt=""
-        />
-        Feed Me!
-      </a>
-      <span class="nav navbar-nav navbar-center" id="restaurantName"></span>
+  <!-- Firebase Authentication -->
+  <script src="https://cdn.firebase.com/libs/firebaseui/4.1.0/firebaseui.js"></script>
+  <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/4.1.0/firebaseui.css" />
+  <script type="text/javascript" src="assets/js/AuthenticationSystem.js"></script>
+  <!-- Track authentication -->
+  <script type="text/javascript" src="assets/js/AuthenticationTracker.js"></script>
+</head>
 
-      <div>
-        <!--sign Out button area and profile pic -->
-        <span class="nav-item" id="brandProfileSpot">
-          <button
-            type="submit"
-            class="btn btn-primary mb-2 btn-sm"
-            id="signOutButton"
-          >
-            <span id="sign-in"></span>
+<body>
+  <nav class="navbar navbar navbar-default bg-dark navbar-fixed-top">
+    <!-- <ul class="nav navbar-nav"> -->
+    <!-- Link to Main page (not connected yet) -->
+    <a class="navbar-brand mt-n4" href="#">
+      <!-- Logo image should go here -->
+      <img
+        src="https://cdn.imgbin.com/6/17/21/imgbin-web-feed-rss-icon-elephant-cute-animal-theme-subscribe-to-rss-icon-material-4aU4PmZbYSiw3f0qTmCqEX9Jj.jpg"
+        width="30" height="30" class="d-inline-block align-top" alt="" />
+      Feed Me!
+    </a>
+    <span class="nav navbar-nav navbar-center" id="restaurantName"></span>
+
+    <div>
+      <!--sign Out button area and profile pic -->
+      <span class="nav-item" id="brandProfileSpot">
+        <button type="submit" class="btn btn-primary mb-2 btn-sm" id="signOutButton">
+          <span id="sign-in"></span>
+        </button>
+      </span>
+
+      <!-- Unordered list floated to the right -->
+      <ul class="nav navbar-nav navbar-right">
+        <!-- Signed in Status text -->
+        <li class="nav-item">
+          <span id="sign-in-status"></span> <span id="rightbar"></span>
+        </li>
+      </ul>
+      <ul>
+        <li>
+          <!-- Login external container -->
+          <div id="firebaseui-auth-container"></div>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  <div id="res-detail"></div>
+  <div class="container pt2 pb3">
+    <div class="grid-row grid-row--top">
+      <!-- Title -->
+      <div class="grid-column span-12">
+        <div class="square">
+          <header class="resturantImg aspect-ratio__content bg--tan text--white align--center centered-content"
+            style="no-repeat scroll center center/cover">
+            <h1 class="inline-block vertical--middle mb0 uppercase display-4"></h1>
+          </header>
+        </div>
+      </div>
+      <div class="grid-column span-12">
+        <div class="rectangle">
+          <div class="aspect-ratio__content bg--primary-color text--white align--center centered-content">
+            <p class="h2">Contact Details</p>
+            <p class="h3 mb0 heading-font lead"></p>
+          </div>
+        </div>
+        <hr />
+        <hr />
+        <div class="rectangle">
+          <div class="aspect-ratio__content bg--primary-color text--white align--center centered-content">
+            <p class="h2">Make a reservation</p>
+            <p class="h1 mb0 heading-font contactdetails"></p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <main>
+      <div class="grid-row">
+        <div class="grid-column span-12">
+          <div class="grid-row">
+            <div class="grid-column span-12 mt1">
+              <div class="square">
+                <div class="aspect-ratio__content bg--tan centered-content align--center hours"></div>
+              </div>
+            </div>
+            <div class="grid-column span-12 mt1 span-half-mobile mobile-col--left">
+              <div class="square">
+                <div class="aspect-ratio__content bg--primary-color text--white align--center centered-content">
+                  <p class="h2">rating</p>
+                  <p class="h4 mb0 heading-font rating"></p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="grid-column span-12">
+          <div class="grid-row">
+            <div class="grid-column span-12 mt1">
+              <div class="square">
+                <div class="aspect-ratio__content bg--tan centered-content align--center">
+                  <p class="h2 heading-font mb0 uppercase text--primary-color website"></p>
+                </div>
+              </div>
+            </div>
+
+            <div class="grid-column span-12 mt1 span-half-mobile mobile-col--left">
+              <div class="square">
+                <div class="aspect-ratio__content bg--primary-color text--white align--center centered-content">
+                  <p class="h2">
+                    <button type="button" class="btn btn-link chat-button">
+                      Chat
+                    </button>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="grid-column span-12">
+          <div class="grid-row"></div>
+        </div>
+      </div>
+      <div class="grid-row reviews"></div>
+    </main>
+  </div>
+
+  <!-- Modal-->
+  <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalCenterTitle">
+            Modal title
+          </h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
           </button>
-        </span>
+        </div>
+        <div class="modal-body">
+          <div class="container chatArea">
+            <!-- Where messages appear -->
+            <div>
+              <ul id="messageBoard"></ul>
+            </div>
 
-        <!-- Unordered list floated to the right -->
-        <ul class="nav navbar-nav navbar-right">
-          <!-- Signed in Status text -->
-          <li class="nav-item">
-            <span id="sign-in-status"></span> <span id="rightbar"></span>
-          </li>
-        </ul>
-        <ul>
-          <li>
-            <!-- Login external container -->
-            <div id="firebaseui-auth-container"></div>
-          </li>
-        </ul>
-      </div>
-    </nav>
-    <div id="res-detail"></div>
-    <div class="container pt2 pb3">
-      <div class="grid-row grid-row--top">
-        <!-- Title -->
-        <div class="grid-column span-12">
-          <div class="square">
-            <header
-              class="resturantImg aspect-ratio__content bg--tan text--white align--center centered-content"
-              style="no-repeat scroll center center/cover"
-            >
-              <h1
-                class="inline-block vertical--middle mb0 uppercase display-4"
-              ></h1>
-            </header>
+            <!-- Form for chat Submission -->
+
           </div>
         </div>
-        <div class="grid-column span-12">
-          <div class="rectangle">
-            <div
-              class="aspect-ratio__content bg--primary-color text--white align--center centered-content"
-            >
-              <p class="h2">Contact Details</p>
-              <p class="h3 mb0 heading-font lead"></p>
-            </div>
-          </div>
-          <hr />
-          <hr />
-          <div class="rectangle">
-            <div
-              class="aspect-ratio__content bg--primary-color text--white align--center centered-content"
-            >
-              <p class="h2">Make a reservation</p>
-              <p class="h1 mb0 heading-font contactdetails"></p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <main>
-        <div class="grid-row">
-          <div class="grid-column span-12">
-            <div class="grid-row">
-              <div class="grid-column span-12 mt1">
-                <div class="square">
-                  <div
-                    class="aspect-ratio__content bg--tan centered-content align--center hours"
-                  ></div>
-                </div>
-              </div>
-              <div
-                class="grid-column span-12 mt1 span-half-mobile mobile-col--left"
-              >
-                <div class="square">
-                  <div
-                    class="aspect-ratio__content bg--primary-color text--white align--center centered-content"
-                  >
-                    <p class="h2">rating</p>
-                    <p class="h4 mb0 heading-font rating"></p>
+        <div class="modal-footer">
+          <div class="container">
+            <!-- Submit button and textbox -->
+            <div class="row">
+              <div class="col-12">
+                <form>
+                  <div class="form-group">
+                    <label for="chatInput">Chat</label>
+                    <input type="text" class="form-control" id="chatInput" placeholder="Chat..." />
                   </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="grid-column span-12">
-            <div class="grid-row">
-              <div class="grid-column span-12 mt1">
-                <div class="square">
-                  <div
-                    class="aspect-ratio__content bg--tan centered-content align--center"
-                  >
-                    <p
-                      class="h2 heading-font mb0 uppercase text--primary-color website"
-                    ></p>
+                  <div id="chatButtons">
+                    <button type="submit" class="btn btn-primary" id="sendMessage">
+                      Send
+                    </button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                      Close
+                    </button>
                   </div>
-                </div>
-              </div>
 
-              <div
-                class="grid-column span-12 mt1 span-half-mobile mobile-col--left"
-              >
-                <div class="square">
-                  <div
-                    class="aspect-ratio__content bg--primary-color text--white align--center centered-content"
-                  >
-                    <p class="h2">
-                      <button type="button" class="btn btn-link chat-button">
-                        Chat
-                      </button>
-                    </p>
-                  </div>
-                </div>
+                </form>
+
               </div>
             </div>
-          </div>
+            <!-- Close button -->
+            <div class="row">
+              <div class="col-12">
 
-          <div class="grid-column span-12">
-            <div class="grid-row"></div>
-          </div>
-        </div>
-        <div class="grid-row reviews"></div>
-      </main>
-    </div>
-
-    <!-- Modal-->
-    <div
-      class="modal fade"
-      id="exampleModalCenter"
-      tabindex="-1"
-      role="dialog"
-      aria-labelledby="exampleModalCenterTitle"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalCenterTitle">
-              Modal title
-            </h5>
-            <button
-              type="button"
-              class="close"
-              data-dismiss="modal"
-              aria-label="Close"
-            >
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            <div class="container chatArea">
-              <!-- Where messages appear -->
-              <div>
-                <ul id="messageBoard"></ul>
               </div>
-
-              <!-- Form for chat Submission -->
-              <form>
-                <div class="form-group">
-                  <label for="chatInput">Chat</label>
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="chatInput"
-                    placeholder="Chat..."
-                  />
-                </div>
-                <button type="submit" class="btn btn-primary" id="sendMessage">
-                  Send
-                </button>
-              </form>
             </div>
+
           </div>
-          <div class="modal-footer">
-            <button
-              type="button"
-              class="btn btn-secondary"
-              data-dismiss="modal"
-            >
-              Close
-            </button>
-            <button type="button" class="btn btn-primary">Save changes</button>
-          </div>
+
+          <br>
         </div>
       </div>
     </div>
-    <!-- alert modal -->
-    <div class="modal" tabindex="-1" role="dialog" id="alertModal">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title">Chat Alert</h5>
-            <button
-              type="button"
-              class="close"
-              data-dismiss="modal"
-              aria-label="Close"
-            >
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            <p>Sorry! You must use your Google Login to chat!</p>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-primary" data-dismiss="modal">
-              Close
-            </button>
-          </div>
+  </div>
+  <!-- alert modal -->
+  <div class="modal" tabindex="-1" role="dialog" id="alertModal">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Chat Alert</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p>Sorry! You must use your Google Login to chat!</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-dismiss="modal">
+            Close
+          </button>
         </div>
       </div>
     </div>
-    <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
-    <script src="assets/js/res-details.js" type="text/javascript"></script>
-    <script src="assets/js/chat.js" type="text/javascript"></script>
-  </body>
+  </div>
+  <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
+  <script src="assets/js/res-details.js" type="text/javascript"></script>
+  <script src="assets/js/chat.js" type="text/javascript"></script>
+</body>
+
 </html>
