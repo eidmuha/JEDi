@@ -109,29 +109,36 @@ messageButton.on("click", function(event) {
   event.preventDefault();
   var dateAdded = moment().unix();
   console.log(dateAdded);
+
   database
-    .ref("/" + restaurantID + "/thread")
-    .child(dateAdded)
-    .set(
-      {
-        // Push the message
-        message: messageBox.val(),
-        // & a timestamp for ordering later
-        dateAdded: firebase.database.ServerValue.TIMESTAMP,
-        // User ID
-        userName: createBox.val(),
-        userID: accountDetails.uid
-      },
-      function(error) {
-        if (error) {
-          // The write failed...
-        } else {
-          // Data saved successfully!
-          // Clear message box
-          messageBox.val("");
-        }
-      }
-    );
+    .ref("/" + restaurantID + "/users/" + accountDetails.uid)
+    .once("value", function(snap) {
+      userName = snap.val().userName;
+      console.log(userName);
+      database
+        .ref("/" + restaurantID + "/thread")
+        .child(dateAdded)
+        .set(
+          {
+            // Push the message
+            message: messageBox.val(),
+            // & a timestamp for ordering later
+            dateAdded: firebase.database.ServerValue.TIMESTAMP,
+            // User ID
+            userName: userName,
+            userID: accountDetails.uid
+          },
+          function(error) {
+            if (error) {
+              // The write failed...
+            } else {
+              // Data saved successfully!
+              // Clear message box
+              messageBox.val("");
+            }
+          }
+        );
+    });
 });
 //   Database listeners
 //
@@ -166,11 +173,12 @@ $(".chat-button").on("click", function() {
   // Check if user already has a userName
   var ref2 = database.ref("/" + restaurantID + "/users/" + accountDetails.uid);
   ref2.once("value", function(snap) {
-    var userID = accountDetails.uid;
     var displayName = accountDetails.displayName;
     console.log(snap.val());
     if (snap.exists()) {
       $("#displayName").val(snap.val().userName);
+      $(".createName").hide();
+      $(".createMsg").show();
     } else {
       $("#displayName").val(displayName);
     }
