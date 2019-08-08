@@ -173,22 +173,21 @@ $(".chat-button").on("click", function() {
   var ref2 = database.ref("/users/" + userID);
   ref2.once("value", function(snap) {
     var displayName = accountDetails.displayName;
+    userName = snap.val().userName;
     console.log(snap.val());
     if (snap.exists()) {
-      $("#displayName").val(snap.val().userName);
+      $("#displayName").val(userName);
       createDiv.hide();
       chatDiv.show();
     } else {
       $("#displayName").val(displayName);
     }
-
     database
       .ref("/" + restaurantID + "/visitors")
       .child(userID)
       .set({
         lastVisit: firebase.database.ServerValue.TIMESTAMP,
-        userName: snap.val().userName,
-        visits: (count = count + 1)
+        userName: userName
       });
   });
 });
