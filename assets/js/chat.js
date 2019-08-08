@@ -15,6 +15,7 @@ var createDiv = $(".createName");
 var userName = "";
 var userID = "";
 var users = [];
+var count = 0;
 
 // Function List
 //
@@ -88,7 +89,7 @@ createButton.on("click", function(event) {
     userName = createBox.val();
     userID = accountDetails.uid;
     database
-      .ref("/" + restaurantID + "/users")
+      .ref("/users")
       .child(userID)
       .set({
         dateAdded: firebase.database.ServerValue.TIMESTAMP,
@@ -108,37 +109,34 @@ messageButton.on("click", function(event) {
   // Prevent default form submission behavior
   event.preventDefault();
   var dateAdded = moment().unix();
-  console.log(dateAdded);
 
-  database
-    .ref("/" + restaurantID + "/users/" + accountDetails.uid)
-    .once("value", function(snap) {
-      userName = snap.val().userName;
-      console.log(userName);
-      database
-        .ref("/" + restaurantID + "/thread")
-        .child(dateAdded)
-        .set(
-          {
-            // Push the message
-            message: messageBox.val(),
-            // & a timestamp for ordering later
-            dateAdded: firebase.database.ServerValue.TIMESTAMP,
-            // User ID
-            userName: userName,
-            userID: accountDetails.uid
-          },
-          function(error) {
-            if (error) {
-              // The write failed...
-            } else {
-              // Data saved successfully!
-              // Clear message box
-              messageBox.val("");
-            }
+  database.ref("/users/" + accountDetails.uid).once("value", function(snap) {
+    userName = snap.val().userName;
+    console.log(userName);
+    database
+      .ref("/" + restaurantID + "/thread")
+      .child(dateAdded)
+      .set(
+        {
+          // Push the message
+          message: messageBox.val(),
+          // & a timestamp for ordering later
+          dateAdded: firebase.database.ServerValue.TIMESTAMP,
+          // User ID
+          userName: userName,
+          userID: accountDetails.uid
+        },
+        function(error) {
+          if (error) {
+            // The write failed...
+          } else {
+            // Data saved successfully!
+            // Clear message box
+            messageBox.val("");
           }
-        );
-    });
+        }
+      );
+  });
 });
 //   Database listeners
 //
@@ -171,17 +169,27 @@ $(".chat-button").on("click", function() {
   checkForRecord(restoInfo.id, restoInfo.name);
 
   // Check if user already has a userName
-  var ref2 = database.ref("/" + restaurantID + "/users/" + accountDetails.uid);
+  userID = accountDetails.uid;
+  var ref2 = database.ref("/users/" + userID);
   ref2.once("value", function(snap) {
     var displayName = accountDetails.displayName;
     console.log(snap.val());
     if (snap.exists()) {
       $("#displayName").val(snap.val().userName);
-      $(".createName").hide();
-      $(".createMsg").show();
+      createDiv.hide();
+      chatDiv.show();
     } else {
       $("#displayName").val(displayName);
     }
+
+    database
+      .ref("/" + restaurantID + "/visitors")
+      .child(userID)
+      .set({
+        lastVisit: firebase.database.ServerValue.TIMESTAMP,
+        userName: snap.val().userName,
+        visits: (count = count + 1)
+      });
   });
 });
 
