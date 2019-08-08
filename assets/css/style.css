@@ -165,3 +165,7 @@ nav {
 .createMsg {
   display: none;
 }
+
+.user {
+  font-weight: 500;
+}
