@@ -36,7 +36,7 @@ function findRestaurantDetail(placeId) {
       $(".website").append(
         "<a href='" + place.website + "' class='link'>About Us</a>"
       );
-      console.log(place.website);
+      // console.log(place.website);
       var hours = place.opening_hours.weekday_text;
       if (hours) {
         $(".hours").prepend("<h4>Hours</h4>");

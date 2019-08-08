@@ -71,51 +71,17 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
     />
+
+    <script> 
+        $(function(){
+          $("#header").load("header.html");  
+        });
+        </script> 
   </head>
 
   <body>
-    <nav class="navbar navbar navbar-default bg-dark navbar-fixed-top">
-      <!-- <ul class="nav navbar-nav"> -->
-      <!-- Link to Main page (not connected yet) -->
-      <a class="navbar-brand mt-n4" href="#">
-        <!-- Logo image should go here -->
-        <img
-          src="https://cdn.imgbin.com/6/17/21/imgbin-web-feed-rss-icon-elephant-cute-animal-theme-subscribe-to-rss-icon-material-4aU4PmZbYSiw3f0qTmCqEX9Jj.jpg"
-          width="30"
-          height="30"
-          class="d-inline-block align-top"
-          alt=""
-        />
-        Feed Me!
-      </a>
-
-      <div>
-        <!--sign Out button area and profile pic -->
-        <span class="nav-item" id="brandProfileSpot">
-          <button
-            type="submit"
-            class="btn btn-primary mb-2 btn-sm"
-            id="signOutButton"
-          >
-            <span id="sign-in"></span>
-          </button>
-        </span>
-
-        <!-- Unordered list floated to the right -->
-        <ul class="nav navbar-nav navbar-right">
-          <!-- Signed in Status text -->
-          <li class="nav-item">
-            <span id="sign-in-status"></span> <span id="rightbar"></span>
-          </li>
-        </ul>
-        <ul>
-          <li>
-            <!-- Login external container -->
-            <div id="firebaseui-auth-container"></div>
-          </li>
-        </ul>
-      </div>
-    </nav>
+    <!-- header -->
+    <div id="header"></div>
     <div id="res-detail"></div>
     <div class="container pt2 pb3">
       <div class="grid-row grid-row--top">
