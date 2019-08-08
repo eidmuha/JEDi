@@ -26,7 +26,9 @@ function findRestaurantDetail(placeId) {
       $(".lead").append(place.formatted_address);
       $(".contactdetails").append(place.formatted_phone_number);
       if (place.rating) {
-        $(".rating").append("<h4>Rating</h4>" + place.rating);
+        //$(".rating").append(place.rating);
+        $(".stars").attr("data-rating", place.rating);
+        console.log(place.rating);
       }
       $(".website").append(
         "<a href='" + place.website + "' class='link'>About Us</a>"
@@ -45,11 +47,11 @@ function findRestaurantDetail(placeId) {
       if (reviews) {
         for (var i = 0; i < reviews.length; i++) {
           $(".reviews").append(
-            "<div class='grid-column span-12 mt1'><div class='square'><div class='aspect-ratio__content centered-content border--tan p2'><div class='align--left'><img class='quote mb1' src='assets/images/quote.png' /></div><p> " +
+            "<div class='centered-content border--tan p2'><div class='align--left'><img class='quote mb1' src='assets/images/quote.png' /></div><p> " +
               reviews[i].text +
               "</p><p class='italic author'>– " +
               reviews[i].author_name +
-              "</p></div></div></div>"
+              "</p></div>"
           );
         }
       }
@@ -61,7 +63,11 @@ function findRestaurantDetail(placeId) {
           "background",
           "url(" + place.photos[0].getUrl() + ")"
         );
-        //$("#resturantImg").attr("src", place.photos[0].getUrl());
+      }
+      if (photos.length > 0) {
+        for (var l = 0; l < photos.length; l++) {
+          $(".gallery").append("<img src='" + place.photos[l].getUrl() + "'/>");
+        }
       }
     }
   );
@@ -90,4 +96,32 @@ findRestaurantDetail(placeID);
 $(".chat-button").on("click", function() {
   $("#exampleModalCenter").modal("show");
   console.log("click");
+});
+
+$.fn.stars = function() {
+  return $(this).each(function() {
+    var rating = $(this).data("rating");
+    var numStars = $(this).data("numStars");
+    var fullStar = new Array(Math.floor(rating + 1)).join(
+      '<i class="fa fa-star"></i>'
+    );
+    var halfStar =
+      rating % 1 !== 0 ? '<i class="fa fa-star-half-empty"></i>' : "";
+    var noStar = new Array(Math.floor(numStars + 1 - rating)).join(
+      '<i class="fa fa-star-o"></i>'
+    );
+    $(this).html(fullStar + halfStar + noStar);
+  });
+};
+
+$(window).on("load", function() {
+  $(".reviews").slick({
+    arrows: false,
+    autoplay: true
+  });
+  $(".gallery").slick({
+    arrows: false,
+    autoplay: true
+  });
+  $(".stars").stars();
 });
