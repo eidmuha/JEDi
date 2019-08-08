@@ -161,6 +161,15 @@ nav {
   height: 450px;
   overflow-y: auto;
 }
+
 .heading-font {
   color: #fff;
+}
+
+.createMsg {
+  display: none;
+}
+
+.user {
+  font-weight: 500;
 }
