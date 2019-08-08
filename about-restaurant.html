@@ -72,16 +72,41 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
     />
 
-    <script> 
-        $(function(){
-          $("#header").load("header.html");  
-        });
-        </script> 
   </head>
 
   <body>
-    <!-- header -->
-    <div id="header"></div>
+     <!-- Navbar fixed top -->
+<nav class="navbar navbar navbar-default bg-dark navbar-fixed-top m-0 p-0">
+
+    <!-- Logo and link to the main page -->
+    <a class="navbar-brand pl-5" href="index.html">
+        <img src="assets/images/logo.png" width="110" height="30" class="d-inline-block align-top" alt="">
+    </a>
+    <div id="firebaseui-auth-container">
+        </div>
+
+    <!--  -->
+    <div class="flaot-right mr-5 pt-1">
+
+        <!--sign Out button area and profile pic -->
+        <span class="nav-item" id="brandProfileSpot">
+            <button type="submit" class="btn btn-primary mb-2 btn-sm" id="signOutButton">
+                <span id="sign-in">Not Loged In</span>
+            </button>
+        </span>
+       
+        <!-- Unordered list floated to the right -->
+        <ul class="nav navbar-nav navbar-right">
+            <!-- Signed in Status text -->
+            <li class="nav-item">
+                <span id="sign-in-status"></span> <span id="rightbar"></span>
+            </li>
+
+        </ul>
+    
+    </div>
+</nav>
+
     <div id="res-detail"></div>
     <div class="container pt2 pb3">
       <div class="grid-row grid-row--top">
