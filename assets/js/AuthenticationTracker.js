@@ -39,15 +39,14 @@ initApp = function () {
             var providerData = user.providerData;
             user.getIdToken().then(function (accessToken) {
                 // Use Display name in sign in status. Change text button to sign out
-                document.getElementById('sign-in-status').innerHTML = 'Signed in as: <b id="dname">' + displayName + '</b>';
+                document.getElementById('sign-in-status').innerHTML = '<b id="dname">' + displayName + '</b>';
 
                 // Display updated status of button
                 document.getElementById('sign-in').textContent = 'Sign out';
                 // Make button visible
-                $('signOutButton').attr('class', 'btn btn-primary mb-2 btn-sm');
+                // $('signOutButton').attr('class', 'btn btn-primary mb-2 btn-sm p-0 m-0');
+
                 $('.firebaseui-list-item button').hide();
-
-
 
                 // Create object with user details and assign: accountDetails
                 accountDetails = {
