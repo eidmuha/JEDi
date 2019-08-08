@@ -194,10 +194,29 @@
             <div class="row">
               <div class="col-12">
                 <form>
+                    <div class="form-group">
+                <div class="createName">
+                  <label for="displayName">Display Name</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="displayName"
+                    placeholder="Create user name here"
+                  />
+                  <button type="submit" class="btn btn-info" id="userName">
+                    Create
+                  </button>
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                      Close
+                    </button>
+                  </div>
+                </form>
+                <form>
                   <div class="form-group">
+                      <div class="createMsg">
                     <label for="chatInput">Chat</label>
                     <input type="text" class="form-control" id="chatInput" placeholder="Chat..." />
-                  </div>
+                 
                   <div id="chatButtons">
                     <button type="submit" class="btn btn-primary" id="sendMessage">
                       Send
@@ -206,7 +225,8 @@
                       Close
                     </button>
                   </div>
-
+                    </div>
+                  </div>
                 </form>
 
               </div>

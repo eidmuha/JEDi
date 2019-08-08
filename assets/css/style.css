@@ -126,7 +126,6 @@ body {
   border: 1px solid;
   padding: 10px;
   margin-top: 5px;
-
 }
 
 /* Navbar CSS */
@@ -155,10 +154,14 @@ nav {
 
 /* Important part */
 .modal-dialog {
-  overflow-y: initial !important
+  overflow-y: initial !important;
 }
 
 .modal-body {
   height: 450px;
   overflow-y: auto;
+}
+
+.createMsg {
+  display: none;
 }
