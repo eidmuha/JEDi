@@ -103,6 +103,10 @@ body {
   width: 345px;
 }
 
+.restaurantTextOverlay {
+  background: #5f9300;
+}
+
 /* Chat board CSS */
 .chatBubble {
   display: flex;
@@ -123,10 +127,25 @@ body {
 }
 
 .chatArea {
-  border: 1px solid;
   padding: 10px;
   margin-top: 5px;
 }
+
+#chatButtons {
+  margin-top: 12px;
+  display: flex;
+  justify-content: space-between;
+}
+
+#sendMessage {
+  order: 1;
+}
+
+#closeButton {
+  order: 2;
+}
+
+
 
 /* Navbar CSS */
 
