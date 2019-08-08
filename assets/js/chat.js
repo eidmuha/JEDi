@@ -1,6 +1,6 @@
 var database = firebase.database();
 // Restaurant Variable from
-var restaurantName = "Blue Barracudas";
+var restaurantID = restoInfo.id;
 
 var chatBoard = $("#messageBoard");
 var messageBox = $("#chatInput");
@@ -18,6 +18,26 @@ var users = [];
 
 // Function List
 //
+
+function checkForRecord(restoID, restoName) {
+  // If a record isn't found, create it
+  console.log('checking...');
+  database.ref().once('value').then(function(snap){
+    
+    console.log(snap.child('Blue Barracudas').val());
+    
+    // If determined to not have the restaurant place ID. Create the structure with the name as the first nest
+    if (snap.child(restoID).val() == null) {
+      // Create new restaurant record with name nested within
+      database.ref('/' + restoID).set({
+        name: restoName
+      })
+    }
+  })
+  
+}
+
+
 // Renders Message onto chatboard
 function RenderMessage(snap) {
   // Declare new element variables
@@ -60,13 +80,15 @@ function RenderMessage(snap) {
 // Event listeners
 //
 // Create Button
-createButton.on("click", function(event) {
+createButton.on("click", function (event) {
+  // Prevent default behavior
   event.preventDefault();
+  // If account id is found to be null (user is not logged in)
   if (accountDetails.uid != null) {
     userName = createBox.val();
     userID = accountDetails.uid;
     database
-      .ref("/" + restaurantName + "/users")
+      .ref("/" + restaurantID + "/users")
       .child(userID)
       .set({
         dateAdded: firebase.database.ServerValue.TIMESTAMP,
@@ -82,16 +104,15 @@ createButton.on("click", function(event) {
 });
 
 // Message Button
-messageButton.on("click", function(event) {
+messageButton.on("click", function (event) {
   // Prevent default form submission behavior
   event.preventDefault();
   var dateAdded = moment().unix();
   console.log(dateAdded);
   database
-    .ref("/" + restaurantName + "/thread")
+    .ref("/" + restaurantID + "/thread")
     .child(dateAdded)
-    .set(
-      {
+    .set({
         // Push the message
         message: messageBox.val(),
         // & a timestamp for ordering later
@@ -100,7 +121,7 @@ messageButton.on("click", function(event) {
         userName: userName,
         userID: accountDetails.uid
       },
-      function(error) {
+      function (error) {
         if (error) {
           // The write failed...
         } else {
@@ -115,24 +136,43 @@ messageButton.on("click", function(event) {
 //
 // When a child is added within the restaurant database reference
 database
-  .ref("/" + restaurantName + "/thread")
+  .ref("/" + restaurantID + "/thread")
   .endAt()
   // Limit to the last item
   .limitToLast(1)
   // When child is added
-  .on("child_added", function(snap) {
+  .on("child_added", function (snap) {
     // Render the child that was added
     RenderMessage(snap.val());
+
+
+    // TODO: Create way to keep the modal body scrolled to the bottom
   });
 
+// Chat Button event listener to display Modal for chatboard
+$(".chat-button").on("click", function () {
+  // Show the modal
+  $("#chatModal").modal("show");
+  console.log("click");
+  console.log('name: ' + restoInfo.name);
+  console.log('resto id: ' + restoInfo.id);
+
+  // Assign restaurant name to title of window
+  $('#restaurantName').text(restoInfo.name);
+
+  // Check for record and create if not available
+  checkForRecord(restoInfo.id, restoInfo.name);
+
+});
+
 // Make user sign out when they click on the sign out Button
-signOutButton.on("click", function() {
+signOutButton.on("click", function () {
   // Sign out from Firebase
   firebase.auth().signOut();
 });
 
 // Event listener for clicks on all buttons in Modal: clicks will close modal
-$(".modal button").on("click", function() {
+$(".modal button").on("click", function () {
   // Hide modal
   alertModal.hide();
 });
@@ -140,17 +180,15 @@ $(".modal button").on("click", function() {
 // Arguments begin here
 //
 // When page is loaded
-$(document).ready(function() {
-  // Set page name to restaurant Title
-  pageRestaurantTitle.text(restaurantName);
-
+$(document).ready(function () {
   // Set parameters for database query
   var ref = database
-    .ref("/" + restaurantName + "/thread")
+    .ref("/" + restaurantID + "/thread")
     .orderByChild("dateAdded");
 
+
   // Take a snapshot and build the message board from the snap
-  ref.once("value", function(snap) {
+  ref.once("value", function (snap) {
     // Clear current board
     chatBoard.empty();
 
