@@ -158,6 +158,12 @@ function setRating(placeRating) {
 
 }
 
+// Make user sign out when they click on the sign out Button
+$("#signOutButton").on("click", function () {
+  // Sign out from Firebase
+  firebase.auth().signOut();
+});
+
 // click on each more>> link, (:)
 // $(document).on("click", "[data-id]", function () {
 //   alert($(this).attr("data-id"));
