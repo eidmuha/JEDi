@@ -22,8 +22,8 @@ function findRestaurantDetail(placeId) {
       ]
     },
     function(place, status) {
-      console.log({ place, status });
-      console.log(place);
+      // console.log({ place, status });
+      // console.log(place);
       // Assign place information to a global variable for the Chat Board
       restoInfo.name = place.name;
 
