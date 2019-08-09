@@ -71,7 +71,6 @@ function initMap() {
 
 
   function callback(results, status) {
-    console.log(results)
     if (status === google.maps.places.PlacesServiceStatus.OK) {
       createMarker(results);
     }
@@ -95,14 +94,11 @@ function initMap() {
     // The LatLngBounds class represents a rectangle in geographical coordinates. 
     var bounds = new google.maps.LatLngBounds();
     places.forEach(function (place, i) {
-      console.log(place)
-      content = '<b>' + place.name + '</b><br><p>' + place.vicinity + '</p><h5><a href="#" class="float-right" data-id = ' + place.place_id + '>More <i class="fa fa-angle-double-right"></i></h5></a>';
-
       if (!place.geometry) {
         console.log("Returned place contains no geometry");
         return;
       }
-
+      
       var icon = {
         url: place.icon,
         size: new google.maps.Size(100, 100),
@@ -110,7 +106,7 @@ function initMap() {
         anchor: new google.maps.Point(17, 34),
         scaledSize: new google.maps.Size(25, 25)
       };
-
+      
       // Create a marker for each place.
       markers.push(new google.maps.Marker({
         map: map,
@@ -118,15 +114,16 @@ function initMap() {
         title: place.name,
         position: place.geometry.location
       }));
-
-
+      
+      
       if (place.geometry.viewport) {
         // Only geocodes have viewport.
         bounds.union(place.geometry.viewport);
       } else {
         bounds.extend(place.geometry.location);
       }
-
+      
+      content = '<b>' + place.name + '</b><br><p>' + place.vicinity + '</p><h5><a href="#" class="float-right" data-id = ' + place.place_id + '>More <i class="fa fa-angle-double-right"></i></h5></a>';
       // redirect to the resturant details page
       google.maps.event.addListener(markers[i], "click", function () {
         infowindow.setContent(content);
