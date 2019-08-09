@@ -26,7 +26,7 @@ function checkForRecord(restoID, restoName) {
   database
     .ref()
     .once("value")
-    .then(function(snap) {
+    .then(function (snap) {
       console.log(snap.child("Blue Barracudas").val());
 
       // If determined to not have the restaurant place ID. Create the structure with the name as the first nest
@@ -81,7 +81,7 @@ function RenderMessage(snap) {
 // Event listeners
 //
 // Create Button
-createButton.on("click", function(event) {
+createButton.on("click", function (event) {
   // Prevent default behavior
   event.preventDefault();
   // If account id is found to be null (user is not logged in)
@@ -105,7 +105,7 @@ createButton.on("click", function(event) {
 });
 
 // Message Button
-messageButton.on("click", function(event) {
+messageButton.on("click", function (event) {
   // Prevent default form submission behavior
   event.preventDefault();
   var dateAdded = moment().unix();
@@ -147,7 +147,7 @@ database
   // Limit to the last item
   .limitToLast(1)
   // When child is added
-  .on("child_added", function(snap) {
+  .on("child_added", function (snap) {
     // Render the child that was added
     RenderMessage(snap.val());
 
@@ -155,17 +155,14 @@ database
   });
 
 // Chat Button event listener to display Modal for chatboard
-$(".chat-button").on("click", function() {
+$(".chat-button").on("click", function () {
   // Show the modal
   $("#chatModal").modal("show");
-  console.log("click");
-  console.log("name: " + restoInfo.name);
-  console.log("resto id: " + restoInfo.id);
 
   // Assign restaurant name to title of window
   $("#restaurantName").text(restoInfo.name);
 
-  // Check for record and create if not available
+  // Check for record and create if not available already
   checkForRecord(restoInfo.id, restoInfo.name);
 
   // Check if user already has a userName
@@ -193,13 +190,13 @@ $(".chat-button").on("click", function() {
 });
 
 // Make user sign out when they click on the sign out Button
-signOutButton.on("click", function() {
+signOutButton.on("click", function () {
   // Sign out from Firebase
   firebase.auth().signOut();
 });
 
 // Event listener for clicks on all buttons in Modal: clicks will close modal
-$(".modal button").on("click", function() {
+$(".modal button").on("click", function () {
   // Hide modal
   alertModal.hide();
 });
@@ -207,14 +204,14 @@ $(".modal button").on("click", function() {
 // Arguments begin here
 //
 // When page is loaded
-$(document).ready(function() {
+$(document).ready(function () {
   // Set parameters for database query
   var ref = database
     .ref("/" + restaurantID + "/thread")
     .orderByChild("dateAdded");
 
   // Take a snapshot and build the message board from the snap
-  ref.once("value", function(snap) {
+  ref.once("value", function (snap) {
     // Clear current board
     chatBoard.empty();
 
