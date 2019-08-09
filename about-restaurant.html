@@ -77,7 +77,7 @@
 
   <body>
      <!-- Navbar fixed top -->
-<nav class="navbar navbar navbar-default bg-dark navbar-fixed-top m-0 p-0">
+<nav class="navbar navbar navbar-default navbar-fixed-top m-0 p-0">
 
     <!-- Logo and link to the main page -->
     <a class="navbar-brand pl-5" href="index.html">
@@ -87,12 +87,12 @@
         </div>
 
     <!--  -->
-    <div class="flaot-right mr-5 pt-1">
+    <div class="float-right mr-5 pt-1">
 
         <!--sign Out button area and profile pic -->
         <span class="nav-item" id="brandProfileSpot">
-            <button type="submit" class="btn btn-primary mb-2 btn-sm" id="signOutButton">
-                <span id="sign-in">Not Loged In</span>
+            <button type="submit" class="btn btn-light mb-2 btn-sm" id="signOutButton">
+                <span id="sign-in">Not Logged In</span>
             </button>
         </span>
        
@@ -115,11 +115,9 @@
         <div class="grid-column span-12">
           <div class="square">
             <header
-              class="resturantImg aspect-ratio__content bg--tan text--white align--center centered-content"
-              style="no-repeat scroll center center/cover"
-            >
+              class="resturantImg aspect-ratio__content bg--tan text--white align--center centered-content">
               <h1
-                class="inline-block vertical--middle mb0 uppercase display-4"
+                class="inline-block vertical--middle mb0 uppercase display-4 restaurantTextOverlay"
               ></h1>
             </header>
           </div>
@@ -245,15 +243,14 @@
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
+
           <div class="modal-body">
             <div class="container chatArea">
               <!-- Where messages appear -->
               <div id="messageTableContainer">
                 <ul id="messageBoard"></ul>
               </div>
-
-              <!-- Form for chat Submission -->
-            </div>
+            </div>        
           </div>
           <div class="modal-footer">
             <div class="container">
@@ -261,45 +258,49 @@
               <div class="row">
                 <div class="col-12">
                   <form>
-                    <div class="form-group">
-                      <label for="chatInput">Chat</label>
-                      <input
-                        type="text"
-                        class="form-control"
-                        id="chatInput"
-                        placeholder="Chat..."
-                      />
-                    </div>
-                    <div id="chatButtons">
-                      <button
-                        type="submit"
-                        class="btn btn-primary"
-                        id="sendMessage"
-                      >
-                        Send
-                      </button>
-                      <button
-                        type="button"
-                        class="btn btn-secondary"
-                        data-dismiss="modal"
-                      >
+                      <div class="form-group">
+                  <div class="createName">
+                    <label for="displayName">Display Name</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="displayName"
+                      placeholder="Create user name here"
+                    />
+                    <button type="submit" class="btn btn-info" id="userName">
+                      Create
+                    </button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">
                         Close
                       </button>
                     </div>
                   </form>
+                  <form>
+                    <div class="form-group">
+                        <div class="createMsg">
+                      <label for="chatInput">Chat</label>
+                      <input type="text" class="form-control" id="chatInput" placeholder="Chat..." />
+                  
+                    <div id="chatButtons">
+                      <button type="submit" class="btn btn-primary" id="sendMessage">
+                        Send
+                      </button>
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal" id="closeButton">
+                        Close
+                      </button>
+                    </div>
+                      </div>
+                    </div>
+                  </form>
                 </div>
-              </div>
-              <!-- Close button -->
-              <div class="row">
-                <div class="col-12"></div>
-              </div>
+               </div>
+       
             </div>
-
-            <br />
           </div>
-        </div>
       </div>
-    </div>
+          </div>
+          </div>
+          
     <!-- alert modal -->
     <div class="modal" tabindex="-1" role="dialog" id="alertModal">
       <div class="modal-dialog" role="document">
@@ -319,7 +320,7 @@
             <p>Sorry! You must use your Google Login to chat!</p>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-primary" data-dismiss="modal">
+            <button type="button" class="btn btn-light" data-dismiss="modal">
               Close
             </button>
           </div>

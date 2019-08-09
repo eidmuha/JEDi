@@ -37,9 +37,12 @@ body {
 }
 
 .chatArea {
-  border: 1px solid;
   padding: 10px;
   margin-top: 5px;
+}
+
+.restaurantTextOverlay {
+  background: #5f9300;
 }
 
 /* Navbar CSS */
@@ -61,6 +64,19 @@ nav {
   display: none;
 }
 
+#chatButtons {
+  margin-top: 12px;
+  display: flex;
+  justify-content: space-between;
+}
+
+#sendMessage {
+  order: 1;
+}
+
+#closeButton {
+  order: 2;
+}
 /* Important part */
 .modal-dialog {
   overflow-y: initial !important;
@@ -70,6 +86,19 @@ nav {
   height: 450px;
   overflow-y: auto;
 }
+
 .heading-font {
   color: #fff;
+}
+
+.createMsg {
+  display: none;
+}
+
+.user {
+  font-weight: 500;
+}
+
+.navbar {
+  background-color: #5f9300;
 }

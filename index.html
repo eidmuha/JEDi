@@ -7,108 +7,71 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
   <title>JEDi-Feed Me!</title>
   <!-- Reset -->
-  <link href="assets/css/reset.css" type="text/css" rel="stylesheet">
+  <link href="assets/css/reset.css" type="text/css" rel="stylesheet" />
   <!-- Bootstrap -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
   <!-- Custom CSS-->
-  <link href="assets/css/style.css" type="text/css" rel="stylesheet">
+  <link href="assets/css/style.css" type="text/css" rel="stylesheet" />
 
-<!-- The core Firebase JS SDK is always required and must be listed first -->
-<script src="https://www.gstatic.com/firebasejs/6.3.4/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/6.3.4/firebase-database.js"></script>
-<script src="https://www.gstatic.com/firebasejs/6.3.4/firebase-auth.js"></script>
-<!-- Init Database -->
-<script src="assets/js/firebaseInit.js"></script>
+  <!-- The core Firebase JS SDK is always required and must be listed first -->
+  <script src="https://www.gstatic.com/firebasejs/6.3.4/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/6.3.4/firebase-database.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/6.3.4/firebase-auth.js"></script>
+  <!-- Init Database -->
+  <script src="assets/js/firebaseInit.js"></script>
 
-<!-- Firebase Authentication -->
-<script src="https://cdn.firebase.com/libs/firebaseui/4.1.0/firebaseui.js"></script>
-<link
-  type="text/css"
-  rel="stylesheet"
-  href="https://cdn.firebase.com/libs/firebaseui/4.1.0/firebaseui.css"
-/>
-<script
-  type="text/javascript"
-  src="assets/js/AuthenticationSystem.js"
-></script>
-<!-- Track authentication -->
-<script
-  type="text/javascript"
-  src="assets/js/AuthenticationTracker.js"
-></script>
-<!-- FontAwesome-->
-<link
-  rel="stylesheet"
-  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
-/>
+  <!-- Firebase Authentication -->
+  <script src="https://cdn.firebase.com/libs/firebaseui/4.1.0/firebaseui.js"></script>
+  <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/4.1.0/firebaseui.css" />
+  <script type="text/javascript" src="assets/js/AuthenticationSystem.js"></script>
+  <!-- Track authentication -->
+  <script type="text/javascript" src="assets/js/AuthenticationTracker.js"></script>
+  <!-- FontAwesome-->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
 
-
-  <script
-      src="https://code.jquery.com/jquery-3.3.1.js"
-      integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
-      crossorigin="anonymous">
-  </script>
-   
-
-  </head>
+  <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+    crossorigin="anonymous"></script>
+</head>
 
 <body>
   <!-- Navbar fixed top -->
-<nav class="navbar navbar navbar-default bg-dark navbar-fixed-top m-0 p-0">
-
+  <nav class="navbar navbar navbar-default navbar-fixed-top m-0 p-0">
     <!-- Logo and link to the main page -->
     <a class="navbar-brand pl-5" href="index.html">
-        <img src="assets/images/logo.png" width="110" height="30" class="d-inline-block align-top" alt="">
+      <img src="assets/images/logo.png" width="110" height="30" class="d-inline-block align-top" alt="" />
     </a>
-    <div id="firebaseui-auth-container">
-        </div>
+    <div id="firebaseui-auth-container"></div>
 
     <!--  -->
     <div class="flaot-right mr-5 pt-1">
+      <!--sign Out button area and profile pic -->
+      <span class="nav-item" id="brandProfileSpot">
+        <button type="submit" class="btn btn-light mb-2 btn-sm" id="signOutButton">
+          <span id="sign-in">Not Logged In</span>
+        </button>
+      </span>
 
-        <!--sign Out button area and profile pic -->
-        <span class="nav-item" id="brandProfileSpot">
-            <button type="submit" class="btn btn-primary mb-2 btn-sm" id="signOutButton">
-                <span id="sign-in">Not Loged In</span>
-            </button>
-        </span>
-       
-        <!-- Unordered list floated to the right -->
-        <ul class="nav navbar-nav navbar-right">
-            <!-- Signed in Status text -->
-            <li class="nav-item">
-                <span id="sign-in-status"></span> <span id="rightbar"></span>
-            </li>
-
-        </ul>
-    
+      <!-- Unordered list floated to the right -->
+      <ul class="nav navbar-nav navbar-right">
+        <!-- Signed in Status text -->
+        <li class="nav-item">
+          <span id="sign-in-status"></span> <span id="rightbar"></span>
+        </li>
+      </ul>
     </div>
-</nav>
+  </nav>
 
-    
-  <!-- div that holds the google map -->
-  <!-- <div class="searchInput">
-
-    <input id="pac-input" class="controls" type="text" placeholder="Search Box">
-  </div> -->
   <div id="map"></div>
 
-  <!-- logic javascript codes -->
-  
   <!-- jQuery -->
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
     integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
     crossorigin="anonymous"></script>
-   
-  <script src="assets/js/app.js" type="text/javascript"></script>
 
-      
-  <!-- <script
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBXWH8-f9n91Qeuo_2S9MBM-iV6wf8Odzo&&libraries=places&callback=initMap"
-    async defer></script> -->
-    <script
+  <script src="assets/js/app.js" type="text/javascript"></script>
+  <script
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBXWH8-f9n91Qeuo_2S9MBM-iV6wf8Odzo&libraries=places&callback=initMap"
     async defer></script>
 </body>

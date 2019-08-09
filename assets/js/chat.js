@@ -15,28 +15,29 @@ var createDiv = $(".createName");
 var userName = "";
 var userID = "";
 var users = [];
+var count = 0;
 
 // Function List
 //
 
 function checkForRecord(restoID, restoName) {
   // If a record isn't found, create it
-  console.log('checking...');
-  database.ref().once('value').then(function(snap){
-    
-    console.log(snap.child('Blue Barracudas').val());
-    
-    // If determined to not have the restaurant place ID. Create the structure with the name as the first nest
-    if (snap.child(restoID).val() == null) {
-      // Create new restaurant record with name nested within
-      database.ref('/' + restoID).set({
-        name: restoName
-      })
-    }
-  })
-  
-}
+  console.log("checking...");
+  database
+    .ref()
+    .once("value")
+    .then(function (snap) {
+      console.log(snap.child("Blue Barracudas").val());
 
+      // If determined to not have the restaurant place ID. Create the structure with the name as the first nest
+      if (snap.child(restoID).val() == null) {
+        // Create new restaurant record with name nested within
+        database.ref("/" + restoID).set({
+          name: restoName
+        });
+      }
+    });
+}
 
 // Renders Message onto chatboard
 function RenderMessage(snap) {
@@ -88,7 +89,7 @@ createButton.on("click", function (event) {
     userName = createBox.val();
     userID = accountDetails.uid;
     database
-      .ref("/" + restaurantID + "/users")
+      .ref("/users")
       .child(userID)
       .set({
         dateAdded: firebase.database.ServerValue.TIMESTAMP,
@@ -108,29 +109,34 @@ messageButton.on("click", function (event) {
   // Prevent default form submission behavior
   event.preventDefault();
   var dateAdded = moment().unix();
-  console.log(dateAdded);
-  database
-    .ref("/" + restaurantID + "/thread")
-    .child(dateAdded)
-    .set({
-        // Push the message
-        message: messageBox.val(),
-        // & a timestamp for ordering later
-        dateAdded: firebase.database.ServerValue.TIMESTAMP,
-        // User ID
-        userName: userName,
-        userID: accountDetails.uid
-      },
-      function (error) {
-        if (error) {
-          // The write failed...
-        } else {
-          // Data saved successfully!
-          // Clear message box
-          messageBox.val("");
+
+  database.ref("/users/" + accountDetails.uid).once("value", function(snap) {
+    userName = snap.val().userName;
+    console.log(userName);
+    database
+      .ref("/" + restaurantID + "/thread")
+      .child(dateAdded)
+      .set(
+        {
+          // Push the message
+          message: messageBox.val(),
+          // & a timestamp for ordering later
+          dateAdded: firebase.database.ServerValue.TIMESTAMP,
+          // User ID
+          userName: userName,
+          userID: accountDetails.uid
+        },
+        function(error) {
+          if (error) {
+            // The write failed...
+          } else {
+            // Data saved successfully!
+            // Clear message box
+            messageBox.val("");
+          }
         }
-      }
-    );
+      );
+  });
 });
 //   Database listeners
 //
@@ -145,7 +151,6 @@ database
     // Render the child that was added
     RenderMessage(snap.val());
 
-
     // TODO: Create way to keep the modal body scrolled to the bottom
   });
 
@@ -153,16 +158,35 @@ database
 $(".chat-button").on("click", function () {
   // Show the modal
   $("#chatModal").modal("show");
-  console.log("click");
-  console.log('name: ' + restoInfo.name);
-  console.log('resto id: ' + restoInfo.id);
 
   // Assign restaurant name to title of window
-  $('#restaurantName').text(restoInfo.name);
+  $("#restaurantName").text(restoInfo.name);
 
-  // Check for record and create if not available
+  // Check for record and create if not available already
   checkForRecord(restoInfo.id, restoInfo.name);
 
+  // Check if user already has a userName
+  userID = accountDetails.uid;
+  var ref2 = database.ref("/users/" + userID);
+  ref2.once("value", function(snap) {
+    var displayName = accountDetails.displayName;
+    userName = snap.val().userName;
+    console.log(snap.val());
+    if (snap.exists()) {
+      $("#displayName").val(userName);
+      createDiv.hide();
+      chatDiv.show();
+    } else {
+      $("#displayName").val(displayName);
+    }
+    database
+      .ref("/" + restaurantID + "/visitors")
+      .child(userID)
+      .set({
+        lastVisit: firebase.database.ServerValue.TIMESTAMP,
+        userName: userName
+      });
+  });
 });
 
 // Make user sign out when they click on the sign out Button
@@ -185,7 +209,6 @@ $(document).ready(function () {
   var ref = database
     .ref("/" + restaurantID + "/thread")
     .orderByChild("dateAdded");
-
 
   // Take a snapshot and build the message board from the snap
   ref.once("value", function (snap) {
