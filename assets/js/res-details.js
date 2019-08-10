@@ -21,7 +21,7 @@ function findRestaurantDetail(placeId) {
         "geometry"
       ]
     },
-    function(place, status) {
+    function (place, status) {
       // console.log({ place, status });
       // console.log(place);
       // Assign place information to a global variable for the Chat Board
@@ -51,10 +51,10 @@ function findRestaurantDetail(placeId) {
         for (var i = 0; i < reviews.length; i++) {
           $(".reviews").append(
             "<div class='centered-content border--tan p2'><div class='align--left'><img class='quote mb1' src='assets/images/quote.png' /></div><p>" +
-              reviews[i].text +
-              "</p><p class='italic author'>– " +
-              reviews[i].author_name +
-              "</p></div></div></div>"
+            reviews[i].text +
+            "</p><p class='italic author'>– " +
+            reviews[i].author_name +
+            "</p></div></div></div>"
           );
         }
       }
@@ -101,8 +101,8 @@ findRestaurantDetail(placeID);
 restoInfo.id = placeID;
 
 // convert number into star
-$.fn.stars = function() {
-  return $(this).each(function() {
+$.fn.stars = function () {
+  return $(this).each(function () {
     var rating = $(this).data("rating");
     var numStars = $(this).data("numStars");
     var fullStar = new Array(Math.floor(rating + 1)).join(
@@ -118,7 +118,7 @@ $.fn.stars = function() {
 };
 
 //slick slider for reviews & gallery
-$(window).on("load", function() {
+$(window).on("load", function () {
   $(".reviews").slick({
     arrows: false,
     autoplay: true

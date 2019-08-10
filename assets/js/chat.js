@@ -78,7 +78,7 @@ function RenderMessage(snap) {
   }
 }
 
-// Event listeners
+
 //
 // Create Button
 createButton.on("click", function (event) {
@@ -110,7 +110,7 @@ messageButton.on("click", function (event) {
   event.preventDefault();
   var dateAdded = moment().unix();
 
-  database.ref("/users/" + accountDetails.uid).once("value", function(snap) {
+  database.ref("/users/" + accountDetails.uid).once("value", function (snap) {
     userName = snap.val().userName;
     console.log(userName);
     database
@@ -126,7 +126,7 @@ messageButton.on("click", function (event) {
           userName: userName,
           userID: accountDetails.uid
         },
-        function(error) {
+        function (error) {
           if (error) {
             // The write failed...
           } else {
@@ -168,7 +168,7 @@ $(".chat-button").on("click", function () {
   // Check if user already has a userName
   userID = accountDetails.uid;
   var ref2 = database.ref("/users/" + userID);
-  ref2.once("value", function(snap) {
+  ref2.once("value", function (snap) {
     var displayName = accountDetails.displayName;
     userName = snap.val().userName;
     console.log(snap.val());
@@ -201,8 +201,6 @@ $(".modal button").on("click", function () {
   alertModal.hide();
 });
 
-// Arguments begin here
-//
 // When page is loaded
 $(document).ready(function () {
   // Set parameters for database query
