@@ -1,5 +1,5 @@
 # Feed Better!
-A location-based restaurant finder that allows users to view reviews, opening times, and connect with fellow foodies in their area on restaurant-specific chat boards.
+A location-based restaurant finder that allows users to view reviews, opening times, and connect with fellow foodies in their area on restaurant-specific chat boards. Restauranteur can use chat boards as instant feedback and even offer specials!
 ![Initial Mockup](https://github.com/eidmuha/JEDi/blob/master/assets/images/JEDi.png)
 
 ## Getting Started
@@ -37,13 +37,29 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 
 ## Acknowledgments
 
-* ...
-* ...
-* etc
+Thank you to the staff of Trilogy, Fareez. Marc and Tim for guiding us with some of the coding challenges along the way to make this 
+possible.
+ 
 
 ## Audience
 
-University students are adventurous when it comes to food. Because they have a budget, they are more likely to look into reviews before they spend. 
-Adds a whole new atmosphere to going to a restaurant. Adds a whole new dynamic to the whole restaurant eating experience. It solves eating alone as a problem. 
-As a university student, I want to know how to get the best value for my limited lunch and dinner allowance and whether the chef is in a good mood today so that I don't end up regretting my spend. 
-As a user, I want to stay socially active while I eat my meal so it's not awkward to eat alone.
+Restauranteurs who are constantly worried about what their customers think about their food and want to address any problems their 
+customers may have with food quality immediately without waiting for it to turn into a negative review, which is permanent.
+
+Foodies who want to comment about the food, without causing a scene or leaving a negative review, which could be damaging to the 
+restaurant. The restauran chatboard offers a real-time exchange between customer and restauranteur to facilitate free-flow 
+communication. 
+
+People who dine alone and want to stay socially engaged with their immediate surroundings through the chatboard.
+
+University students are adventurous when it comes to food. Because they have a budget, they are more likely to look into reviews before 
+they spend. They want to know how to get the best value for my limited lunch and dinner allowance and whether the chef is in a good mood 
+today so that I don't end up regretting my spend. 
+
+Adds a whole new atmosphere to going to a restaurant. Adds a whole new dynamic to the whole restaurant eating experience.
+
+Tourists who enter an area and are wondering what the long queue is in front of the restaurant is about, and able to engage with the 
+crowd waiting or eating inside to ask what is good without being intrusive or awkward.
+
+Restauranteurs who want to manage their food inventory better by offering specials on the chatboard to encourage take up by customers
+presently inside the restaurant, or those who are engaged with the restaurant chatboard.
