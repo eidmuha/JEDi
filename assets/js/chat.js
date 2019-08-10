@@ -78,7 +78,6 @@ function RenderMessage(snap) {
   }
 }
 
-
 //
 // Create Button
 createButton.on("click", function(event) {
@@ -117,7 +116,7 @@ messageButton.on("click", function(event) {
   event.preventDefault();
   var dateAdded = moment().unix();
 
-  database.ref("/users/" + accountDetails.uid).once("value", function (snap) {
+  database.ref("/users/" + accountDetails.uid).once("value", function(snap) {
     userName = snap.val().userName;
     console.log(userName);
     database
@@ -133,7 +132,7 @@ messageButton.on("click", function(event) {
           userName: userName,
           userID: accountDetails.uid
         },
-        function (error) {
+        function(error) {
           if (error) {
             // The write failed...
           } else {
@@ -173,9 +172,11 @@ $(".chat-button").on("click", function() {
   checkForRecord(restoInfo.id, restoInfo.name);
 
   // Check if user already has a userName
+
   userID = accountDetails.uid;
   var ref2 = database.ref("/users/" + userID);
-  ref2.once("value", function (snap) {
+  console.log(userID);
+  ref2.once("value", function(snap) {
     var displayName = accountDetails.displayName;
     console.log(displayName);
     console.log(snap.val());
