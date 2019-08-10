@@ -1,6 +1,5 @@
 # Feed Better!
-
-This web application (called) displays the predefined resturants on a map arround a user. The user clicks on on of the locatoin and then can communicate with those people who are willing to give feedback on the specific resturant. Something like:
+A location-based restaurant finder that allows users to view reviews, opening times, and connect with fellow foodies in their area on restaurant-specific chat boards.
 ![Initial Mockup](https://github.com/eidmuha/JEDi/blob/master/assets/images/JEDi.png)
 
 ## Getting Started
@@ -25,6 +24,8 @@ The files and resources of this project is uploaded on github publically and the
 * [Google Map API](https://developers.google.com/maps/documentation/javascript/tutorial/) - Provides MAP and the markers on the places
 * [Zomato](https://developers.zomato.com/) - Zomato API to find surrounding restaurants using coordinates (lat, long)
 * [IP Geolocation](https://ipgeolocation.io/) - ...
+* [Firebase Authentication] (https://firebase.google.com) - Used to allow Google users to login to post on Restaurant chat boards
+* [Firebase Realtime Database] (https://firebase.google.com) - Allows users to post and view each others messages in realtime
 
 ## Authors
 
