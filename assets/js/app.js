@@ -18,11 +18,14 @@ var request;
 var center;
 // map options, eg. zoom level etc.
 var options;
+// holds the content of the infoWindow for each marker, when clicked
+var content = ""
 
 
 // Initialize and add the map
 function initMap() {
 
+  // infoWindow that contains the content for each of the markers
   var infowindow = new google.maps.InfoWindow();
 
   options = {
@@ -88,7 +91,6 @@ function initMap() {
       marker.setMap(null);
     });
     markers = [];
-    var content = ""
 
     // For each place, get the icon, name and location.
     // The LatLngBounds class represents a rectangle in geographical coordinates. 
@@ -98,7 +100,7 @@ function initMap() {
         console.log("Returned place contains no geometry");
         return;
       }
-      
+
       var icon = {
         url: place.icon,
         size: new google.maps.Size(100, 100),
@@ -106,7 +108,7 @@ function initMap() {
         anchor: new google.maps.Point(17, 34),
         scaledSize: new google.maps.Size(25, 25)
       };
-      
+
       // Create a marker for each place.
       markers.push(new google.maps.Marker({
         map: map,
@@ -114,18 +116,18 @@ function initMap() {
         title: place.name,
         position: place.geometry.location
       }));
-      
-      
+
+
       if (place.geometry.viewport) {
         // Only geocodes have viewport.
         bounds.union(place.geometry.viewport);
       } else {
         bounds.extend(place.geometry.location);
       }
-      
-      content = '<b>' + place.name + '</b><br><p>' + place.vicinity + '</p><h5><a href="#" class="float-right" data-id = ' + place.place_id + '>More <i class="fa fa-angle-double-right"></i></h5></a>';
+
       // redirect to the resturant details page
       google.maps.event.addListener(markers[i], "click", function () {
+        content = '<b>' + markers[i].title + '</b><br><p>' + place.vicinity + '</p><h5><a href="#" class="float-right" data-id = ' + place.place_id + '>More <i class="fa fa-angle-double-right"></i></h5></a>';
         infowindow.setContent(content);
         infowindow.open(map, this);
         // window.location.href='about-restaurant.html?place_id='+place.place_id;
