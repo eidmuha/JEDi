@@ -26,7 +26,7 @@ function checkForRecord(restoID, restoName) {
   database
     .ref()
     .once("value")
-    .then(function (snap) {
+    .then(function(snap) {
       console.log(snap.child("Blue Barracudas").val());
 
       // If determined to not have the restaurant place ID. Create the structure with the name as the first nest
@@ -78,10 +78,9 @@ function RenderMessage(snap) {
   }
 }
 
-
 //
 // Create Button
-createButton.on("click", function (event) {
+createButton.on("click", function(event) {
   // Prevent default behavior
   event.preventDefault();
   // If account id is found to be null (user is not logged in)
@@ -95,6 +94,13 @@ createButton.on("click", function (event) {
         dateAdded: firebase.database.ServerValue.TIMESTAMP,
         userName: userName
       });
+    database
+      .ref("/" + restoInfo.id + "/visitors")
+      .child(userID)
+      .set({
+        lastVisit: firebase.database.ServerValue.TIMESTAMP,
+        userName: userName
+      });
     createBox.val("");
     createDiv.hide();
     chatDiv.show();
@@ -105,12 +111,12 @@ createButton.on("click", function (event) {
 });
 
 // Message Button
-messageButton.on("click", function (event) {
+messageButton.on("click", function(event) {
   // Prevent default form submission behavior
   event.preventDefault();
   var dateAdded = moment().unix();
 
-  database.ref("/users/" + accountDetails.uid).once("value", function (snap) {
+  database.ref("/users/" + accountDetails.uid).once("value", function(snap) {
     userName = snap.val().userName;
     console.log(userName);
     database
@@ -126,7 +132,7 @@ messageButton.on("click", function (event) {
           userName: userName,
           userID: accountDetails.uid
         },
-        function (error) {
+        function(error) {
           if (error) {
             // The write failed...
           } else {
@@ -147,7 +153,7 @@ database
   // Limit to the last item
   .limitToLast(1)
   // When child is added
-  .on("child_added", function (snap) {
+  .on("child_added", function(snap) {
     // Render the child that was added
     RenderMessage(snap.val());
 
@@ -155,7 +161,7 @@ database
   });
 
 // Chat Button event listener to display Modal for chatboard
-$(".chat-button").on("click", function () {
+$(".chat-button").on("click", function() {
   // Show the modal
   $("#chatModal").modal("show");
 
@@ -166,50 +172,52 @@ $(".chat-button").on("click", function () {
   checkForRecord(restoInfo.id, restoInfo.name);
 
   // Check if user already has a userName
+
   userID = accountDetails.uid;
   var ref2 = database.ref("/users/" + userID);
-  ref2.once("value", function (snap) {
+  console.log(userID);
+  ref2.once("value", function(snap) {
     var displayName = accountDetails.displayName;
-    userName = snap.val().userName;
+    console.log(displayName);
     console.log(snap.val());
     if (snap.exists()) {
-      $("#displayName").val(userName);
+      $("#displayName").val(snap.val().userName);
       createDiv.hide();
       chatDiv.show();
+      database
+        .ref("/" + restoInfo.id + "/visitors")
+        .child(userID)
+        .set({
+          lastVisit: firebase.database.ServerValue.TIMESTAMP,
+          userName: snap.val().userName
+        });
     } else {
       $("#displayName").val(displayName);
     }
-    database
-      .ref("/" + restaurantID + "/visitors")
-      .child(userID)
-      .set({
-        lastVisit: firebase.database.ServerValue.TIMESTAMP,
-        userName: userName
-      });
   });
 });
 
 // Make user sign out when they click on the sign out Button
-signOutButton.on("click", function () {
+signOutButton.on("click", function() {
   // Sign out from Firebase
   firebase.auth().signOut();
 });
 
 // Event listener for clicks on all buttons in Modal: clicks will close modal
-$(".modal button").on("click", function () {
+$(".modal button").on("click", function() {
   // Hide modal
   alertModal.hide();
 });
 
 // When page is loaded
-$(document).ready(function () {
+$(document).ready(function() {
   // Set parameters for database query
   var ref = database
     .ref("/" + restaurantID + "/thread")
     .orderByChild("dateAdded");
 
   // Take a snapshot and build the message board from the snap
-  ref.once("value", function (snap) {
+  ref.once("value", function(snap) {
     // Clear current board
     chatBoard.empty();
 
