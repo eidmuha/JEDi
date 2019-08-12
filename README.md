@@ -23,9 +23,8 @@ The files and resources of this project is uploaded on github publically and the
 
 * [Google Map API](https://developers.google.com/maps/documentation/javascript/tutorial/) - Provides MAP and the markers on the places
 * [Zomato](https://developers.zomato.com/) - Zomato API to find surrounding restaurants using coordinates (lat, long)
-* [IP Geolocation](https://ipgeolocation.io/) - ...
-* [Firebase Authentication] (https://firebase.google.com) - Used to allow Google users to login to post on Restaurant chat boards
-* [Firebase Realtime Database] (https://firebase.google.com) - Allows users to post and view each others messages in realtime
+* [Firebase Authentication](https://firebase.google.com) - Used to allow Google users to login to post on Restaurant chat boards
+* [Firebase Realtime Database](https://firebase.google.com) - Allows users to post and view each others messages in realtime
 
 ## Authors
 
