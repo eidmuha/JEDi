@@ -1,23 +1,25 @@
 # Feed Better!
 A location-based restaurant finder that allows users to view reviews, opening times, and connect with fellow foodies in their area on restaurant-specific chat boards. Restauranteur can use chat boards as instant feedback and even offer specials!
-![Initial Mockup](https://github.com/eidmuha/JEDi/blob/master/assets/images/JEDi.png)
 
 ## Getting Started
 
-This website can be open on all modern web browsers. The link to the URL is given bellow
+This project is a group porject (See the [contributors](https://github.com/your/JEDi/contributors) ), which is part of the on-going training at [Monash Coding Boot Camp](https://bootcamps.monash.edu/) partnered by [Trilogy](https://www.trilogyed.com/). 
+
+The requirements is based on the ideas provided by the group members. The following Wireframe is based on the requirements that outlines and structures the initial design.
+![Wireframe](https://github.com/eidmuha/JEDi/blob/master/assets/images/JEDi.png)
 
 ### Prerequisites
 
-The location should enabled for location purposes as it retrives the users location
+The location should enabled for location purposes as it retrives the user's current location and restaurants arround within 2km.
 
 ### Installing
 
-No installation required
+No installation required as this is a light weight web application based on HTML/CSS and Javascript.
 
 
 ## Deployment
 
-The files and resources of this project is uploaded on github publically and the URL is provided
+The files and resources of this project is uploaded on github publically and the URL is provided [here](https://eidmuha.github.io/JEDi/)
 
 ## Built With
 
@@ -32,7 +34,7 @@ See the list of [contributors](https://github.com/your/JEDi/contributors) who pa
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+This project is licensed under the MIT License - see the [LICENSE](https://github.com/eidmuha/JEDi/blob/master/LICENSE) file for details
 
 ## Acknowledgments
 
